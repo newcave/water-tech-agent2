@@ -25,6 +25,7 @@ S = T.rescore(sc, wx, wy)
 sel = st.session_state.get("tm_year") or (yrs[-1] if yrs else None)
 if sel not in yrs and yrs:
     sel = yrs[-1]
+x_name = "논문 점수 X →  (" + " · ".join(T.LABEL[k] for k in T.XK if k in bx) + ")"
 y_name = {"patents": "실용화 (특허 + 산업계 공저)", "industry": "실용화 — 임시: 산업계 공저 논문", None: "실용화 (연결 대기)"}[basis]
 
 ui.page_header("Technology map · Papers × Practicality", "기술 지도 — 논문 × 실용화",
@@ -151,7 +152,7 @@ with m1:
                 fig.add_trace(go.Scatter(x=[cur[u][0] for u in lid], y=[cur[u][1] for u in lid], mode="text", text=nm,
                                          textposition=pos, textfont=dict(size=10.5, color="#cbd5e1"), hoverinfo="skip", showlegend=False))
             ui.style(fig, 680, legend=True, margin=dict(l=10, r=10, t=40, b=10))
-            fig.update_xaxes(range=[-5, 105], title="논문 점수 X →  (규모 · 성장 · 피인용 질 · 저널 위상)", showgrid=False, tickvals=[0, 25, 50, 75, 100])
+            fig.update_xaxes(range=[-5, 105], title=x_name, showgrid=False, tickvals=[0, 25, 50, 75, 100])
             fig.update_yaxes(range=[-16, 116], title=f"{y_name} →", showgrid=False, tickvals=[0, 25, 50, 75, 100])
         else:                                                  # Y가 아직 없으면: 연구소별 줄에 논문 점수만
             rows = [c for c in D.INST_ORDER if c in (insts or [])]
@@ -170,7 +171,7 @@ with m1:
                     hovertemplate="<b>%{customdata[0]}</b><br>논문 점수 %{x:.0f} · 최근 3년 %{customdata[1]:,}편<extra></extra>"))
             fig.add_vline(x=50, line=dict(color="rgba(226,232,240,.3)", width=1, dash="dot"))
             ui.style(fig, 560, legend=False, margin=dict(l=10, r=10, t=20, b=10))
-            fig.update_xaxes(range=[-5, 105], title="논문 점수 X →  (규모 · 성장 · 피인용 질" + (" · 저널 위상)" if "J" in bx else ")"))
+            fig.update_xaxes(range=[-5, 105], title=x_name)
             fig.update_yaxes(categoryorder="array", categoryarray=[D.INST_SHORT[c] for c in rows][::-1], showgrid=True)
         ui.plot(fig, f"tm_map_{sel}")
         ui.note("점수는 그해 41개 세부 기술 사이의 백분위(0~100)라 '상대 위치'입니다. 50선이 41개의 가운데입니다. "
