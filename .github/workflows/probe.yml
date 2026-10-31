@@ -3,13 +3,17 @@ on:
   workflow_dispatch: {}
   push:
     branches: [claude/probe-sources]
+permissions:
+  contents: write
 jobs:
   probe:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - uses: actions/checkout@v4
       - name: SJR 연도별 CSV 받기 시험
         run: |
+          exec >> probe_out.txt 2>&1
           for y in 2019 2024; do
             code=$(curl -sS -L -A "Mozilla/5.0 (research; newcave.kwater@gmail.com)" -o sjr_$y.csv -w "%{http_code}" "https://www.scimagojr.com/journalrank.php?out=xls&year=$y")
             echo "SJR $y → HTTP $code, $(wc -c < sjr_$y.csv) bytes, $(wc -l < sjr_$y.csv) lines"
@@ -18,6 +22,11 @@ jobs:
           done
       - name: OpenAlex 저널 분포·주제 group_by 시험
         run: |
+          exec >> probe_out.txt 2>&1
           curl -sS "https://api.openalex.org/works?filter=title_and_abstract.search:membrane%20filtration%20water,publication_year:2023&group_by=primary_location.source.id&mailto=newcave.kwater@gmail.com" | python3 -c "import sys,json; d=json.load(sys.stdin); print('sources', d['meta'].get('groups_count'), [ (g['key_display_name'], g['count']) for g in d['group_by'][:5]])"
           curl -sS "https://api.openalex.org/works?filter=title_and_abstract.search:membrane%20filtration%20water,publication_year:2023&group_by=topics.id&mailto=newcave.kwater@gmail.com" | python3 -c "import sys,json; d=json.load(sys.stdin); print('topics', d['meta'].get('groups_count'), [ (g['key_display_name'], g['count']) for g in d['group_by'][:8]])"
           curl -sS "https://api.openalex.org/rate-limit?mailto=newcave.kwater@gmail.com" | head -c 600; echo
+      - name: 결과 커밋
+        run: |
+          git config user.name probe-bot && git config user.email probe@users.noreply.github.com
+          git add probe_out.txt && git commit -m "probe 결과 [skip ci]" && git push
