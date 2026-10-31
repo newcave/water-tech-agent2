@@ -1,0 +1,248 @@
+# -*- coding: utf-8 -*-
+"""화면 부품 — Streamlit 기본 모양을 걷어 내고 Dash 대시보드처럼: 고정 상단바 · 카드 그리드 · 지표 타일 · 다크 Plotly.
+(사용자 요청 2026-11-01: '최대한 Streamlit스럽지 않고 Dash 같이' → 이 파일만 CSS를 쓴다)"""
+import html
+import re
+from contextlib import contextmanager
+
+import plotly.graph_objects as go
+import streamlit as st
+
+# 카테고리 색 — dataviz 기준 팔레트 다크 단계 7색 (패널 #0f172a 위 검증 통과: 밝기 대역·CVD·대비)
+INST_COLORS = {"INST-01": "#3987e5", "INST-02": "#d95926", "INST-03": "#199e70", "INST-04": "#c98500",
+               "INST-05": "#d55181", "INST-06": "#008300", "INST-07": "#9085e9"}
+ACCENT, ACCENT2, GOOD, BAD = "#22d3ee", "#3b82f6", "#34d399", "#f87171"
+TEXT, MUTED, DIM, LINE, PANEL = "#e2e8f0", "#94a3b8", "#64748b", "#1e293b", "#0f172a"
+FONT = "'Pretendard Variable', Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif"
+PLOT_CONFIG = {"displayModeBar": False, "responsive": True}
+esc = html.escape
+
+CSS = """
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+:root { --bg:#070d1a; --panel:#0f172a; --panel2:#111c33; --line:#1e293b; --line2:#26344f; --text:#e2e8f0;
+        --muted:#94a3b8; --dim:#64748b; --accent:#22d3ee; --accent2:#3b82f6; --good:#34d399; --bad:#f87171; }
+html, body, .stApp, .stApp p, .stApp span, .stApp div, .stApp button, .stApp input, .stApp label { font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', sans-serif; }
+[data-testid="stIconMaterial"], .material-symbols-rounded { font-family: 'Material Symbols Rounded' !important; }
+[data-testid="stMarkdownContainer"] > p:empty { display:none; } .stMarkdown { margin-bottom: 0; }
+.stApp { background: radial-gradient(1100px 520px at 85% -10%, rgba(34,211,238,.10), transparent 60%),
+                     radial-gradient(900px 480px at -10% 10%, rgba(59,130,246,.10), transparent 60%), var(--bg); }
+/* Streamlit 기본 장치 숨기기 */
+[data-testid="stHeader"], [data-testid="stToolbar"], [data-testid="stDecoration"], [data-testid="stStatusWidget"],
+[data-testid="stSidebarCollapsedControl"], footer, #MainMenu { display:none !important; }
+[data-testid="stMainBlockContainer"] { max-width: 1440px; padding: 0 28px 48px; }
+[data-testid="stVerticalBlock"] { gap: 14px; }
+/* 상단바 */
+.st-key-topbar { position: sticky; top: 0; z-index: 1000; margin: 0 -28px 6px; padding: 10px 28px;
+  background: rgba(7,13,26,.82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.brand { display:flex; align-items:center; gap:12px; text-decoration:none; }
+.brand svg { width:34px; height:34px; }
+.brand b { display:block; color:#fff; font-size:1.02rem; letter-spacing:-.01em; line-height:1.15; }
+.brand span { display:block; color:var(--dim); font-size:.72rem; letter-spacing:.06em; }
+.st-key-topnav [data-testid="stPageLink"] a { padding: 7px 13px; border-radius: 9px; transition: background .15s; }
+.st-key-topnav [data-testid="stPageLink"] a p, .st-key-topnav [data-testid="stPageLink"] a span { color: var(--muted) !important; font-size: .9rem; font-weight: 500; }
+.st-key-topnav [data-testid="stPageLink"] a:hover { background: rgba(148,163,184,.08); }
+[class*="st-key-navon"] [data-testid="stPageLink"] a { background: rgba(34,211,238,.10); box-shadow: inset 0 -2px 0 var(--accent); }
+[class*="st-key-navon"] [data-testid="stPageLink"] a p, [class*="st-key-navon"] [data-testid="stPageLink"] a span { color: #e6fbff !important; }
+.live { display:inline-flex; align-items:center; gap:7px; padding:5px 11px; border-radius:999px; font-size:.74rem; color:#a7f3d0;
+  background: rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.25); white-space:nowrap; }
+.live i { width:7px; height:7px; border-radius:50%; background: var(--good); box-shadow:0 0 0 0 rgba(52,211,153,.6); animation: pulse 2s infinite; }
+@keyframes pulse { 0% {box-shadow:0 0 0 0 rgba(52,211,153,.55);} 70% {box-shadow:0 0 0 8px rgba(52,211,153,0);} 100% {box-shadow:0 0 0 0 rgba(52,211,153,0);} }
+/* 페이지 머리 */
+.ph { display:flex; justify-content:space-between; align-items:flex-end; gap:18px; flex-wrap:wrap; padding: 10px 0 2px; }
+.ph .eb { color: var(--accent); font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; font-weight:600; }
+.ph h1 { margin: 4px 0 6px; padding:0; color:#fff; font-size: clamp(1.5rem, 2.6vw, 2.05rem); font-weight: 700; letter-spacing:-.02em; }
+.ph p { margin:0; color: var(--muted); max-width: 78ch; font-size:.95rem; }
+.chips { display:flex; gap:8px; flex-wrap:wrap; }
+.chip { font-size:.74rem; color: var(--muted); border:1px solid var(--line2); background: rgba(15,23,42,.6); padding:5px 10px; border-radius:8px; white-space:nowrap; }
+.chip b { color: var(--text); font-weight:600; }
+/* 지표 타일 */
+.kpis { display:grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
+.kpi { position:relative; overflow:hidden; background: linear-gradient(180deg, rgba(17,28,51,.95), rgba(15,23,42,.95)); border:1px solid var(--line);
+  border-radius: 14px; padding: 16px 16px 12px; }
+.kpi::before { content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background: var(--c, var(--accent)); }
+.kpi .l { color: var(--muted); font-size: .78rem; font-weight: 500; display:flex; align-items:center; gap:6px; }
+.kpi .v { color:#fff; font-size: 1.85rem; font-weight: 700; letter-spacing:-.02em; margin-top: 4px; font-variant-numeric: tabular-nums; }
+.kpi .v small { font-size: .95rem; color: var(--muted); font-weight: 500; margin-left: 3px; }
+.kpi .d { font-size:.76rem; margin-top: 2px; color: var(--dim); }
+.kpi .d .up { color: var(--good); font-weight:600; } .kpi .d .dn { color: var(--bad); font-weight:600; }
+.kpi svg.spark { position:absolute; right:14px; top:14px; width: 84px; height: 30px; opacity:.95; }
+.kpi.sp .l { padding-right: 92px; }
+/* 카드 */
+[class*="st-key-card-"] { background: linear-gradient(180deg, rgba(17,28,51,.92), rgba(15,23,42,.92)); border:1px solid var(--line);
+  border-radius: 16px; padding: 16px 18px 12px; box-shadow: 0 18px 40px -28px rgba(0,0,0,.8); }
+.ch { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
+.ch .t { color: #f1f5f9; font-size: .98rem; font-weight: 650; letter-spacing:-.01em; }
+.ch .s { color: var(--dim); font-size: .78rem; margin-top: 2px; }
+.ch .tag { font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color: var(--accent); border:1px solid rgba(34,211,238,.3);
+  border-radius:6px; padding:2px 7px; white-space:nowrap; }
+.note { color: var(--dim); font-size: .76rem; line-height:1.5; margin: 2px 0 4px; }
+/* 순위 목록 */
+.rk { display:grid; gap: 9px; margin-top: 4px; }
+.rk .r { display:grid; grid-template-columns: 20px minmax(0,1fr) auto; gap: 4px 10px; align-items:center; }
+.rk .n { color: var(--dim); font-size:.74rem; font-variant-numeric: tabular-nums; }
+.rk .k { color: var(--text); font-size: .86rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.rk .k em { font-style:normal; color: var(--dim); font-size:.74rem; margin-left:6px; }
+.rk .val { color: #fff; font-size:.86rem; font-weight:600; font-variant-numeric: tabular-nums; }
+.rk .bar { grid-column: 2 / 4; height: 4px; border-radius: 4px; background: rgba(148,163,184,.12); overflow:hidden; }
+.rk .bar i { display:block; height:100%; border-radius:4px; }
+/* 히어로 */
+.hero { position:relative; overflow:hidden; border-radius: 18px; border:1px solid var(--line2); padding: 30px 32px;
+  background: linear-gradient(120deg, rgba(14,40,74,.95) 0%, rgba(10,22,44,.95) 55%, rgba(8,47,73,.9) 100%); }
+.hero svg.waves { position:absolute; inset:auto 0 0 0; width:100%; height: 100%; opacity:.5; pointer-events:none; }
+.hero .in { position:relative; display:grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 26px; align-items:center; }
+.hero .eb { color: var(--accent); font-size:.74rem; letter-spacing:.2em; text-transform:uppercase; font-weight:600; }
+.hero h1 { color:#fff; font-size: clamp(1.8rem, 3.4vw, 2.75rem); line-height:1.15; letter-spacing:-.03em; margin: 8px 0 12px; padding:0; font-weight:800; }
+.hero h1 span { background: linear-gradient(90deg, #67e8f9, #60a5fa); -webkit-background-clip:text; background-clip:text; color: transparent; }
+.hero p { color:#b6c7dc; font-size: 1rem; line-height:1.65; margin:0; max-width: 56ch; }
+.hero .facts { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+.hero .f { background: rgba(7,13,26,.45); border:1px solid rgba(148,163,184,.16); border-radius: 12px; padding: 12px 14px; }
+.hero .f b { display:block; color:#fff; font-size: 1.45rem; font-weight:700; font-variant-numeric: tabular-nums; letter-spacing:-.02em; }
+.hero .f span { color: var(--muted); font-size:.78rem; }
+/* 단계 흐름 */
+.flow { display:grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 10px; margin-top: 6px; }
+.flow .st { position:relative; background: rgba(7,13,26,.5); border:1px solid var(--line); border-radius: 12px; padding: 12px; }
+.flow .st:not(:last-child)::after { content:"›"; position:absolute; right:-10px; top: 40%; color: var(--accent); font-size:1.1rem; }
+.flow .st .i { font-size: .7rem; color: var(--accent); letter-spacing:.12em; font-weight:700; }
+.flow .st b { display:block; color:#fff; font-size:.92rem; margin: 3px 0 4px; }
+.flow .st span { display:block; color: var(--muted); font-size:.76rem; line-height:1.45; }
+/* 에이전트 */
+.agents { display:grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+.ag { background: rgba(7,13,26,.5); border:1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+.ag .top { display:flex; justify-content:space-between; align-items:center; }
+.ag b { color:#fff; font-size:.9rem; }
+.ag .st { font-size:.7rem; padding:2px 8px; border-radius:999px; font-weight:600; }
+.ag p { color: var(--muted); font-size:.78rem; margin: 6px 0 0; line-height:1.45; }
+.foot { color: var(--dim); font-size:.74rem; text-align:center; padding: 22px 0 6px; border-top:1px solid var(--line); margin-top: 10px; }
+.foot a { color: var(--muted); }
+/* 위젯 살짝 */
+[data-testid="stSegmentedControl"] button, [data-testid="stButtonGroup"] button { font-size:.82rem; }
+[data-testid="stWidgetLabel"] p { color: var(--muted) !important; font-size:.78rem !important; }
+@media (max-width: 900px) {
+  .hero .in { grid-template-columns: minmax(0,1fr); }
+  .flow { grid-template-columns: minmax(0,1fr); } .flow .st::after { display:none; }
+  [data-testid="stMainBlockContainer"] { padding: 0 14px 40px; } .st-key-topbar { margin: 0 -14px 6px; padding: 10px 14px; }
+}
+</style>
+"""
+
+LOGO = """<svg viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#67e8f9"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs>
+<path d="M20 3C14 12 8 18 8 25a12 12 0 0 0 24 0C32 18 26 12 20 3Z" fill="url(#lg)" opacity=".95"/>
+<g stroke="#07101f" stroke-width="1.6" fill="#07101f"><line x1="15" y1="27" x2="20" y2="20"/><line x1="20" y1="20" x2="25" y2="27"/>
+<line x1="15" y1="27" x2="25" y2="27"/><circle cx="15" cy="27" r="2.2"/><circle cx="20" cy="20" r="2.2"/><circle cx="25" cy="27" r="2.2"/></g></svg>"""
+
+
+def h(body: str, width="stretch"):
+    """HTML 조각 출력 — st.html은 SVG를 걸러 내므로 st.markdown(unsafe_allow_html) 사용.
+    줄바꿈·들여쓰기는 공백 하나로 접어 마크다운이 코드 블록으로 읽지 않게 함."""
+    body = re.sub(r"\s*\n\s*", " ", body).replace("~", "&#126;").replace("$", "&#36;")   # 마크다운 취소선·수식 오해 방지
+    st.markdown(body, unsafe_allow_html=True, width=width)
+
+
+def inject():
+    st.html(CSS)
+
+
+def topbar(pages: list, current):
+    with st.container(key="topbar", horizontal=True, horizontal_alignment="distribute", vertical_alignment="center"):
+        h(f'<div class="brand">{LOGO}<div><b>Water Co-Scientist</b><span>K-WATER RESEARCH INSTITUTE · AI LAB</span></div></div>',
+          width="content")
+        with st.container(key="topnav", horizontal=True, vertical_alignment="center", width="content", gap="small"):
+            for i, p in enumerate(pages):
+                with st.container(key=("navon" if p.title == current.title else f"nav{i}"), width="content"):
+                    st.page_link(p, label=p.title, icon=p.icon)
+            h('<span class="live"><i></i>LIVE · 6시간 자동 갱신</span>', width="content")
+
+
+def page_header(eyebrow: str, title: str, desc: str, chips=()):
+    ch = "".join(f'<span class="chip">{c}</span>' for c in chips)
+    h(f'<div class="ph"><div><div class="eb">{esc(eyebrow)}</div><h1>{esc(title)}</h1><p>{desc}</p></div>'
+            f'<div class="chips">{ch}</div></div>')
+
+
+def spark(values, color=ACCENT, w=96, h=34):
+    v = [float(x or 0) for x in values or []]
+    if len(v) < 2:
+        return ""
+    lo, hi = min(v), max(v)
+    rng = (hi - lo) or 1
+    pts = [(i * (w - 4) / (len(v) - 1) + 2, h - 3 - (x - lo) / rng * (h - 8)) for i, x in enumerate(v)]
+    line = " ".join(f"{x:.1f},{y:.1f}" for x, y in pts)
+    area = f"2,{h} " + line + f" {w - 2},{h}"
+    gid = f"g{abs(hash((tuple(v), color))) % 10**8}"
+    return (f'<svg class="spark" viewBox="0 0 {w} {h}" preserveAspectRatio="none"><defs><linearGradient id="{gid}" x1="0" y1="0" x2="0" y2="1">'
+            f'<stop offset="0" stop-color="{color}" stop-opacity=".35"/><stop offset="1" stop-color="{color}" stop-opacity="0"/></linearGradient></defs>'
+            f'<polygon points="{area}" fill="url(#{gid})"/><polyline points="{line}" fill="none" stroke="{color}" stroke-width="1.8" '
+            f'stroke-linejoin="round" stroke-linecap="round"/><circle cx="{pts[-1][0]:.1f}" cy="{pts[-1][1]:.1f}" r="2.4" fill="{color}"/></svg>')
+
+
+def kpis(tiles: list):
+    """tiles: dict(label, value, unit='', delta=None(str), up=True|False|None, sub='', color=, spark=[...])"""
+    out = []
+    for t in tiles:
+        d = ""
+        if t.get("delta"):
+            cls = "up" if t.get("up") else "dn" if t.get("up") is False else ""
+            d = f'<span class="{cls}">{t["delta"]}</span> '
+        sp = " sp" if t.get("spark") and len(t["spark"]) > 1 else ""
+        out.append(f'<div class="kpi{sp}" style="--c:{t.get("color", ACCENT)}"><div class="l">{esc(t["label"])}</div>'
+                   f'<div class="v">{t["value"]}<small>{t.get("unit", "")}</small></div>'
+                   f'<div class="d">{d}{t.get("sub", "")}</div>{spark(t.get("spark"), t.get("color", ACCENT))}</div>')
+    h(f'<div class="kpis">{"".join(out)}</div>')
+
+
+@contextmanager
+def card(key: str, title: str, sub: str = "", tag: str = ""):
+    with st.container(key=f"card-{key}"):
+        h(f'<div class="ch"><div><div class="t">{esc(title)}</div>'
+                + (f'<div class="s">{sub}</div>' if sub else "") + "</div>"
+                + (f'<span class="tag">{esc(tag)}</span>' if tag else "") + "</div>")
+        yield
+
+
+def ranked(rows: list, fmt="{:.1f}%", color=ACCENT, max_val=None):
+    """rows: dict(label, value, sub='', color=)"""
+    mx = max_val or max((r["value"] or 0) for r in rows) or 1
+    out = []
+    for i, r in enumerate(rows, 1):
+        w = max(2, (r["value"] or 0) / mx * 100)
+        c = r.get("color", color)
+        out.append(f'<div class="r"><span class="n">{i:02d}</span><span class="k">{esc(r["label"])}'
+                   + (f'<em>{esc(r["sub"])}</em>' if r.get("sub") else "")
+                   + f'</span><span class="val">{fmt.format(r["value"])}</span>'
+                   f'<span class="bar"><i style="width:{w:.1f}%;background:{c}"></i></span></div>')
+    h(f'<div class="rk">{"".join(out)}</div>')
+
+
+def note(text: str):
+    h(f'<div class="note">{text}</div>')
+
+
+def footer(updated: str):
+    h(f'<div class="foot">K-water연구원 AI연구소 · Water Co-Scientist(물벗 R&amp;D 에이전트) 쇼케이스 · '
+            f'데이터: OpenAlex(CC0) · KCI(한국학술지인용색인) 데이터 활용 · 통합 물 지식 자산 정보검색 시스템(WCS) · 갱신 {esc(updated)}</div>')
+
+
+def style(fig: go.Figure, height=320, legend=True, margin=None):
+    fig.update_layout(
+        height=height, paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(family=FONT, color="#cbd5e1", size=12), margin=margin or dict(l=10, r=14, t=34, b=10),
+        hoverlabel=dict(bgcolor="#0b1222", bordercolor="#26344f", font=dict(family=FONT, color="#e2e8f0", size=12)),
+        legend=dict(orientation="h", yanchor="bottom", y=1.0, x=0, bgcolor="rgba(0,0,0,0)", font=dict(size=11, color=MUTED)),
+        showlegend=legend, hovermode="closest")
+    fig.update_xaxes(automargin=True, gridcolor="rgba(148,163,184,.10)", zeroline=False, linecolor="rgba(148,163,184,.18)",
+                     tickfont=dict(color=MUTED, size=11), title_font=dict(color=DIM, size=11))
+    fig.update_yaxes(automargin=True, gridcolor="rgba(148,163,184,.10)", zeroline=False, linecolor="rgba(148,163,184,.18)",
+                     tickfont=dict(color=MUTED, size=11), title_font=dict(color=DIM, size=11))
+    return fig
+
+
+def plot(fig, key):
+    st.plotly_chart(fig, theme=None, config=PLOT_CONFIG, key=key, width="stretch")
+
+
+def fmt_pct(v, plus=True, nd=0):
+    if v is None:
+        return "–"
+    return (f"{v:+.{nd}f}%" if plus else f"{v:.{nd}f}%")
