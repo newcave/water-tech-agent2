@@ -1,6 +1,8 @@
 name: probe-sources
 on:
   workflow_dispatch: {}
+  push:
+    branches: [claude/probe-sources]
 jobs:
   probe:
     runs-on: ubuntu-latest
