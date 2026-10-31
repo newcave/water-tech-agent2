@@ -21,12 +21,14 @@ jobs:
             grep -i "Water Research;" sjr_$y.csv | head -2 || true
           done
       - name: OpenAlex 저널 분포·주제 group_by 시험
+        continue-on-error: true
         run: |
           exec >> probe_out.txt 2>&1
-          curl -sS "https://api.openalex.org/works?filter=title_and_abstract.search:membrane%20filtration%20water,publication_year:2023&group_by=primary_location.source.id&mailto=newcave.kwater@gmail.com" | python3 -c "import sys,json; d=json.load(sys.stdin); print('sources', d['meta'].get('groups_count'), [ (g['key_display_name'], g['count']) for g in d['group_by'][:5]])"
+          curl -sS "https://api.openalex.org/works?filter=title_and_abstract.search:membrane%20filtration%20water,publication_year:2023&group_by=primary_location.source.id&mailto=newcave.kwater@gmail.com" > g1.json; head -c 300 g1.json; echo; python3 -c "import sys,json; d=json.load(sys.stdin); print('sources', d['meta'].get('groups_count'), [ (g['key_display_name'], g['count']) for g in d['group_by'][:5]])" < g1.json
           curl -sS "https://api.openalex.org/works?filter=title_and_abstract.search:membrane%20filtration%20water,publication_year:2023&group_by=topics.id&mailto=newcave.kwater@gmail.com" | python3 -c "import sys,json; d=json.load(sys.stdin); print('topics', d['meta'].get('groups_count'), [ (g['key_display_name'], g['count']) for g in d['group_by'][:8]])"
           curl -sS "https://api.openalex.org/rate-limit?mailto=newcave.kwater@gmail.com" | head -c 600; echo
       - name: 결과 커밋
+        if: always()
         run: |
           git config user.name probe-bot && git config user.email probe@users.noreply.github.com
           git add probe_out.txt && git commit -m "probe 결과 [skip ci]" && git push
