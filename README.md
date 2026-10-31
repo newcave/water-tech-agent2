@@ -6,6 +6,7 @@ K-water연구원 AI연구소 **물벗 R&D 에이전트**(`newcave/water-tech-age
 | 화면 | 내용 |
 |---|---|
 | 개요 | 히어로 · 핵심 지표 · 연구소 성장 지수 · 스코어보드 · 키워드 순위 · 동작 흐름 |
+| 수집 현황 (v1.2) | 에이전트 실제 작업 기록: 실행·가동 시간·커밋·수집·라벨 · 활동 캘린더 · 다음 예정 실행 · 일자별·24시간 · 누적·주별·월별 · 분야별 단계 · 수집 목표 대비 · 실시간 실행 로그(1분) · 실행 시간 분포 · 파이프라인 회차 · 다룬 자료 규모 · 장애 기록 |
 | 세계 연구 흐름 | 7개 연구소 관련 해외 논문(OpenAlex) 추이 · 성장 × 피인용 · 키워드 탐색 · 전체 순위 |
 | 국내 · K-water | KCI 집계: K-water 논문 연도별 · 게재 학회지 · 분야 구성·특화도 · 상승 표현 · 용어 네트워크 |
 | 떠오르는 주제 | 핵심 12개 저널 91,125편 용어 추세: 군집 지도 · 군집 연결 · 군집별 용어 · 새 단어 · 오르내림 |
@@ -14,6 +15,7 @@ K-water연구원 AI연구소 **물벗 R&D 에이전트**(`newcave/water-tech-age
 
 - 데이터: `water-tech-agent` main의 `data_seed/`를 30분 캐시로 실시간 읽고, 실패하면 `snapshot/`(같은 공개 집계 사본)을 씀
 - 기술 지도 재료는 물벗 `data_seed/tech_map/scores.json`(tech-map 워크플로) — 화면은 구성 지표 백분위를 가중치대로 다시 합칠 뿐, 수집·점수 설계의 주인은 물벗
+- 수집 현황 재료는 물벗 data 브랜치 `live/ops/ops.json`(ops-stats 워크플로, 매시) — 2분 캐시로 읽고 실패하면 snapshot. 상단바 LIVE 표시도 이 화면으로 이어짐
 - 로컬 시험: `WCA_SEED_DIR=<폴더>`를 주면 그 폴더의 data_seed 사본을 먼저 읽음
 - 실행: `streamlit run app.py` · 배포: Streamlit Community Cloud, main · `app.py`
 - 출처: OpenAlex(CC0) · KCI(한국학술지인용색인) 데이터 활용(집계만) · WCS

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Water Co-Scientist 쇼케이스 (water-tech-agent2) — v1.1 (기술 지도 추가)
+"""Water Co-Scientist 쇼케이스 (water-tech-agent2) — v1.2 (수집 현황 추가)
 물벗 R&D 에이전트(newcave/water-tech-agent)의 공개 집계를 홍보·시연용 대시보드로 보여 준다.
 모양: Dash 대시보드처럼 — 고정 상단바 · 카드 그리드 · 지표 타일 · 다크 Plotly (wca/ui.py).
 실행: streamlit run app.py"""
@@ -27,13 +27,14 @@ def _fresh(*mods):
 
 _fresh(D, T, ui)
 
-APP_VERSION = "v1.1.1 · 2026-11-01"
+APP_VERSION = "v1.2 · 2026-11-01"
 
 st.set_page_config(page_title="Water Co-Scientist", page_icon="💧", layout="wide", initial_sidebar_state="collapsed")
 ui.inject()
 
 PAGES = [
     st.Page("app_pages/overview.py", title="개요", icon=":material/space_dashboard:", default=True),
+    st.Page("app_pages/ops.py", title="수집 현황", icon=":material/monitoring:", url_path="ops"),
     st.Page("app_pages/trends.py", title="세계 연구 흐름", icon=":material/public:", url_path="trends"),
     st.Page("app_pages/korea.py", title="국내 · K-water", icon=":material/flag:", url_path="korea"),
     st.Page("app_pages/emerging.py", title="떠오르는 주제", icon=":material/trending_up:", url_path="emerging"),

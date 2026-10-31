@@ -153,6 +153,33 @@ def assets() -> dict:
     return load("wcs_assets.json")
 
 
+# ── 에이전트 수집 현황 (data 브랜치 live/ops/ops.json — 매시 갱신) ──────────
+
+OPS_URL = "https://raw.githubusercontent.com/newcave/water-tech-agent/data/live/ops/ops.json"
+
+
+@st.cache_data(ttl=120, show_spinner=False)
+def ops() -> dict:
+    """에이전트가 실제로 한 일의 건수 — 물벗 agents/ops_stats.py가 매시 씀. 못 읽으면 snapshot."""
+    local = os.environ.get("WCA_SEED_DIR")
+    if local and (Path(local) / "ops/ops.json").exists():
+        d = json.loads((Path(local) / "ops/ops.json").read_text(encoding="utf-8"))
+        d["_src"] = "local"
+        return d
+    try:
+        with urllib.request.urlopen(f"{OPS_URL}?t={int(time.time() // 120)}", timeout=8) as r:
+            d = json.loads(r.read().decode("utf-8"))
+            d["_src"] = "live"
+            return d
+    except Exception:
+        p = SNAP / "ops/ops.json"
+        if p.exists():
+            d = json.loads(p.read_text(encoding="utf-8"))
+            d["_src"] = "snapshot"
+            return d
+        return {}
+
+
 # ── 기술 지도 (논문 × 실용화) ──────────────────────────────────────────
 
 def tech_scores() -> dict:

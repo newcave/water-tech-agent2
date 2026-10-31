@@ -149,6 +149,43 @@ html, body, .stApp, .stApp p, .stApp span, .stApp div, .stApp button, .stApp inp
 .disc div::before { counter-increment: d; content: counter(d); position:absolute; left:0; top:1px; width:20px; height:20px; border-radius:6px;
   background: rgba(34,211,238,.12); color: var(--accent); font-size:.72rem; font-weight:700; display:flex; align-items:center; justify-content:center; }
 .disc b { color: var(--text); }
+/* 수집 현황 */
+.nxs { display:grid; gap:7px; margin:6px 0 10px; }
+.nx { display:grid; grid-template-columns: 10px minmax(0,1fr) auto auto; gap:10px; align-items:center; padding:6px 10px;
+  background: rgba(7,13,26,.5); border:1px solid var(--line); border-radius:10px; }
+.nx .dot { width:8px; height:8px; border-radius:50%; background: var(--accent); animation: glow 2s ease-in-out infinite; }
+@keyframes glow { 0%,100% { opacity:1; } 50% { opacity:.3; } }
+.nx b { color:#fff; font-size:.86rem; } .nx .w { color: var(--dim); font-size:.74rem; font-variant-numeric: tabular-nums; }
+.nx .l { color: var(--accent); font-size:.8rem; font-weight:600; font-variant-numeric: tabular-nums; min-width:62px; text-align:right; }
+.fns { display:grid; gap:11px; margin-top:6px; }
+.fn .fh { display:flex; justify-content:space-between; align-items:baseline; gap:8px; font-size:.84rem; }
+.fn .fh span { color: var(--muted); font-size:.76rem; font-variant-numeric: tabular-nums; } .fn .fh span b { color:#fff; }
+.fn .fb { position:relative; height:9px; border-radius:6px; background: rgba(148,163,184,.08); margin-top:5px; overflow:hidden; }
+.fn .fb i { position:absolute; left:0; top:0; bottom:0; border-radius:6px; }
+.tks { display:grid; gap:7px; margin-top:6px; }
+.tk { display:grid; grid-template-columns: minmax(0,1.3fr) minmax(0,1fr) auto; gap:10px; align-items:center; }
+.tk .n { color: var(--text); font-size:.8rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.tk .b { height:6px; border-radius:6px; background: rgba(148,163,184,.12); overflow:hidden; }
+.tk .b i { display:block; height:100%; border-radius:6px; background: linear-gradient(90deg, #199e70, #34d399); }
+.tk .v { color:#fff; font-size:.78rem; font-variant-numeric: tabular-nums; min-width:96px; text-align:right; } .tk .v em { color: var(--dim); font-style:normal; }
+.term { border:1px solid #1f2a40; border-radius:12px; overflow:hidden; background:#050a14; margin-top:6px; }
+.term .bar { display:flex; align-items:center; gap:6px; padding:8px 12px; background:#0b1324; border-bottom:1px solid #1f2a40; }
+.term .bar i { width:10px; height:10px; border-radius:50%; background:#f87171; } .term .bar i:nth-child(2) { background:#fbbf24; }
+.term .bar i:nth-child(3) { background:#34d399; } .term .bar span { color: var(--dim); font-size:.72rem; margin-left:8px; font-family: ui-monospace, Menlo, Consolas, monospace; }
+.term .body { max-height: 430px; overflow-y:auto; padding:10px 12px; font-family: ui-monospace, 'JetBrains Mono', Menlo, Consolas, monospace; font-size:.74rem; line-height:1.65; }
+.term .ln { display:flex; gap:10px; white-space:nowrap; } .term .t { color:#475569; } .term .ok { color:#34d399; } .term .bad { color:#f87171; }
+.term .run { color:#22d3ee; animation: blink 1.2s steps(1) infinite; } .term .dim { color:#64748b; } .term .evi { color:#c084fc; }
+.term .wf { color:#93c5fd; min-width:150px; } .term .lb { color:#cbd5e1; min-width:96px; } .term .ev { color:#64748b; min-width:120px; }
+.term .du { color:#fde047; } .term .msg { color:#e2e8f0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.term .cur { color:#22d3ee; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity:0; } }
+.scl { display:grid; gap:10px; margin-top:6px; }
+.sc { display:grid; grid-template-columns: minmax(0,1.4fr) minmax(0,1fr) auto; gap:12px; align-items:center; }
+.sc .k { color: var(--text); font-size:.84rem; } .sc .b { height:8px; border-radius:6px; background: rgba(148,163,184,.1); overflow:hidden; }
+.sc .b i { display:block; height:100%; border-radius:6px; }
+.sc .v { color:#fff; font-weight:650; font-size:.95rem; font-variant-numeric: tabular-nums; min-width:110px; text-align:right; }
+.sc .v em { color: var(--dim); font-style:normal; font-size:.74rem; margin-left:3px; font-weight:500; }
+a.live { text-decoration:none; } a.live:hover { background: rgba(52,211,153,.16); }
 .foot { color: var(--dim); font-size:.74rem; text-align:center; padding: 22px 0 6px; border-top:1px solid var(--line); margin-top: 10px; }
 .foot a { color: var(--muted); }
 /* 위젯 살짝 */
@@ -189,7 +226,7 @@ def topbar(pages: list, current):
             for i, p in enumerate(pages):
                 with st.container(key=("navon" if p.title == current.title else f"nav{i}"), width="content"):
                     st.page_link(p, label=p.title, icon=p.icon)
-            h('<span class="live"><i></i>LIVE · 6시간 자동 갱신</span>', width="content")
+            h('<a class="live" href="./ops" target="_self"><i></i>LIVE · 에이전트 가동 중</a>', width="content")
 
 
 def page_header(eyebrow: str, title: str, desc: str, chips=()):
