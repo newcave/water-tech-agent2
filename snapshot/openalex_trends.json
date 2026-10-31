@@ -1,0 +1,2089 @@
+{
+ "history": [
+  {
+   "ts": 1790356523,
+   "kwater": 160,
+   "related_1y": 16856
+  },
+  {
+   "ts": 1790372256,
+   "kwater": 160,
+   "related_1y": 16856
+  },
+  {
+   "ts": 1790399046,
+   "kwater": 160,
+   "related_1y": 16856
+  },
+  {
+   "ts": 1790422146,
+   "kwater": 160,
+   "related_1y": 16864
+  },
+  {
+   "ts": 1790440013,
+   "kwater": 160,
+   "related_1y": 16905
+  },
+  {
+   "ts": 1790457207,
+   "kwater": 160,
+   "related_1y": 16905
+  },
+  {
+   "ts": 1790486546,
+   "kwater": 160,
+   "related_1y": 16905
+  },
+  {
+   "ts": 1790510852,
+   "kwater": 160,
+   "related_1y": 16942
+  },
+  {
+   "ts": 1790528425,
+   "kwater": 160,
+   "related_1y": 16942
+  },
+  {
+   "ts": 1790544205,
+   "kwater": 160,
+   "related_1y": 16942
+  },
+  {
+   "ts": 1790573333,
+   "kwater": 160,
+   "related_1y": 16942
+  },
+  {
+   "ts": 1790604127,
+   "kwater": 413,
+   "related_1y": 2743
+  },
+  {
+   "ts": 1790637532,
+   "kwater": 413,
+   "related_1y": 16940
+  },
+  {
+   "ts": 1790645017,
+   "kwater": 413,
+   "related_1y": 8934,
+   "journal_corpus": 103492
+  },
+  {
+   "ts": 1790660870,
+   "kwater": 413,
+   "related_1y": 16940,
+   "journal_corpus": 103492
+  },
+  {
+   "ts": 1790686683,
+   "kwater": 413,
+   "related_1y": 16940,
+   "journal_corpus": 103492
+  },
+  {
+   "ts": 1790746626,
+   "kwater": 413,
+   "related_1y": 16978,
+   "journal_corpus": 103502
+  },
+  {
+   "ts": 1790771997,
+   "kwater": 414,
+   "related_1y": 0,
+   "journal_corpus": 103532
+  },
+  {
+   "ts": 1790806763,
+   "kwater": 414,
+   "related_1y": 17114,
+   "journal_corpus": 103532
+  },
+  {
+   "ts": 1790834465,
+   "kwater": 414,
+   "related_1y": 17114,
+   "journal_corpus": 103532
+  },
+  {
+   "ts": 1790860992,
+   "kwater": 414,
+   "related_1y": 17176,
+   "journal_corpus": 103547
+  },
+  {
+   "ts": 1790894612,
+   "kwater": 414,
+   "related_1y": 17176,
+   "journal_corpus": 103546
+  },
+  {
+   "ts": 1790919825,
+   "kwater": 414,
+   "related_1y": 17176,
+   "journal_corpus": 103546
+  },
+  {
+   "ts": 1790944892,
+   "kwater": 415,
+   "related_1y": 17266,
+   "journal_corpus": 103568
+  },
+  {
+   "ts": 1790979431,
+   "kwater": 415,
+   "related_1y": 17266,
+   "journal_corpus": 103568
+  },
+  {
+   "ts": 1791004956,
+   "kwater": 415,
+   "related_1y": 17266,
+   "journal_corpus": 103568
+  },
+  {
+   "ts": 1791027818,
+   "kwater": 415,
+   "related_1y": 17266,
+   "journal_corpus": 103568
+  },
+  {
+   "ts": 1791044740,
+   "kwater": 415,
+   "related_1y": 17514,
+   "journal_corpus": 103591
+  },
+  {
+   "ts": 1791062469,
+   "kwater": 415,
+   "related_1y": 17514,
+   "journal_corpus": 103591
+  },
+  {
+   "ts": 1791093504,
+   "kwater": 415,
+   "related_1y": 17514,
+   "journal_corpus": 103591
+  },
+  {
+   "ts": 1791116780,
+   "kwater": 415,
+   "related_1y": 17565,
+   "journal_corpus": 103613
+  },
+  {
+   "ts": 1791149518,
+   "kwater": 415,
+   "related_1y": 17565,
+   "journal_corpus": 103613
+  },
+  {
+   "ts": 1791179203,
+   "kwater": 415,
+   "related_1y": 17565,
+   "journal_corpus": 103613
+  },
+  {
+   "ts": 1791211638,
+   "kwater": 415,
+   "related_1y": 17677,
+   "journal_corpus": 103623
+  },
+  {
+   "ts": 1791245152,
+   "kwater": 415,
+   "related_1y": 4607,
+   "journal_corpus": 103623
+  },
+  {
+   "ts": 1791267968,
+   "kwater": 415,
+   "related_1y": 17677,
+   "journal_corpus": 103623
+  },
+  {
+   "ts": 1791311101,
+   "kwater": 416,
+   "related_1y": 17720,
+   "journal_corpus": 103641
+  },
+  {
+   "ts": 1791353111,
+   "kwater": 416,
+   "related_1y": 17720,
+   "journal_corpus": 103641
+  },
+  {
+   "ts": 1791379794,
+   "kwater": 416,
+   "related_1y": 17720,
+   "journal_corpus": 103641
+  },
+  {
+   "ts": 1791439832,
+   "kwater": 416,
+   "related_1y": 17227,
+   "journal_corpus": 103668
+  },
+  {
+   "ts": 1791466572,
+   "kwater": 416,
+   "related_1y": 17227,
+   "journal_corpus": 103668
+  },
+  {
+   "ts": 1791501805,
+   "kwater": 412,
+   "related_1y": 16442,
+   "journal_corpus": 103670
+  },
+  {
+   "ts": 1791526443,
+   "kwater": 412,
+   "related_1y": 16442,
+   "journal_corpus": 103670
+  },
+  {
+   "ts": 1791552327,
+   "kwater": 412,
+   "related_1y": 16411,
+   "journal_corpus": 103692
+  },
+  {
+   "ts": 1791585685,
+   "kwater": 412,
+   "related_1y": 16411,
+   "journal_corpus": 103692
+  },
+  {
+   "ts": 1791611830,
+   "kwater": 412,
+   "related_1y": 16411,
+   "journal_corpus": 103692
+  },
+  {
+   "ts": 1791635830,
+   "kwater": 412,
+   "related_1y": 16490,
+   "journal_corpus": 103710
+  },
+  {
+   "ts": 1791668877,
+   "kwater": 412,
+   "related_1y": 16490,
+   "journal_corpus": 103710
+  },
+  {
+   "ts": 1791697944,
+   "kwater": 412,
+   "related_1y": 16490,
+   "journal_corpus": 103710
+  },
+  {
+   "ts": 1791723368,
+   "kwater": 412,
+   "related_1y": 7300,
+   "journal_corpus": 103723
+  },
+  {
+   "ts": 1791756082,
+   "kwater": 412,
+   "related_1y": 16523,
+   "journal_corpus": 103723
+  },
+  {
+   "ts": 1791785035,
+   "kwater": 412,
+   "related_1y": 16523,
+   "journal_corpus": 103723
+  },
+  {
+   "ts": 1791819221,
+   "kwater": 412,
+   "related_1y": 16434,
+   "journal_corpus": 103573
+  },
+  {
+   "ts": 1791852319,
+   "kwater": 412,
+   "related_1y": 16434,
+   "journal_corpus": 103573
+  },
+  {
+   "ts": 1791901025,
+   "kwater": 412,
+   "related_1y": 16483,
+   "journal_corpus": 103585
+  },
+  {
+   "ts": 1791931739,
+   "kwater": 412,
+   "related_1y": 16483,
+   "journal_corpus": 103585
+  },
+  {
+   "ts": 1791953899,
+   "kwater": 412,
+   "related_1y": 16483,
+   "journal_corpus": 103585
+  },
+  {
+   "ts": 1791979104,
+   "kwater": 412,
+   "related_1y": 15724,
+   "journal_corpus": 103585
+  },
+  {
+   "ts": 1791998132,
+   "kwater": 412,
+   "related_1y": 16483,
+   "journal_corpus": 103585
+  },
+  {
+   "ts": 1792014255,
+   "kwater": 412,
+   "related_1y": 16524,
+   "journal_corpus": 103614
+  },
+  {
+   "ts": 1792039547,
+   "kwater": 412,
+   "related_1y": 16524,
+   "journal_corpus": 103614
+  },
+  {
+   "ts": 1792064105,
+   "kwater": 412,
+   "related_1y": 16580,
+   "journal_corpus": 103644
+  },
+  {
+   "ts": 1792083892,
+   "kwater": 412,
+   "related_1y": 16580,
+   "journal_corpus": 103644
+  },
+  {
+   "ts": 1792099603,
+   "kwater": 412,
+   "related_1y": 16580,
+   "journal_corpus": 103644
+  },
+  {
+   "ts": 1792125400,
+   "kwater": 412,
+   "related_1y": 16580,
+   "journal_corpus": 103644
+  },
+  {
+   "ts": 1792150180,
+   "kwater": 412,
+   "related_1y": 16580,
+   "journal_corpus": 103649
+  },
+  {
+   "ts": 1792168952,
+   "kwater": 412,
+   "related_1y": 16637,
+   "journal_corpus": 103674
+  },
+  {
+   "ts": 1792185256,
+   "kwater": 412,
+   "related_1y": 16637,
+   "journal_corpus": 103674
+  },
+  {
+   "ts": 1792211575,
+   "kwater": 412,
+   "related_1y": 16637,
+   "journal_corpus": 103674
+  },
+  {
+   "ts": 1792234173,
+   "kwater": 412,
+   "related_1y": 16679,
+   "journal_corpus": 103682
+  },
+  {
+   "ts": 1792251548,
+   "kwater": 412,
+   "related_1y": 16679,
+   "journal_corpus": 103682
+  },
+  {
+   "ts": 1792269555,
+   "kwater": 412,
+   "related_1y": 16679,
+   "journal_corpus": 103682
+  },
+  {
+   "ts": 1792298363,
+   "kwater": 412,
+   "related_1y": 16679,
+   "journal_corpus": 103682
+  },
+  {
+   "ts": 1792321992,
+   "kwater": 412,
+   "related_1y": 16709,
+   "journal_corpus": 103707
+  },
+  {
+   "ts": 1792338905,
+   "kwater": 412,
+   "related_1y": 16709,
+   "journal_corpus": 103707
+  },
+  {
+   "ts": 1792356502,
+   "kwater": 412,
+   "related_1y": 16709,
+   "journal_corpus": 103707
+  },
+  {
+   "ts": 1792385185,
+   "kwater": 412,
+   "related_1y": 16709,
+   "journal_corpus": 103707
+  },
+  {
+   "ts": 1792416278,
+   "kwater": 412,
+   "related_1y": 16724,
+   "journal_corpus": 103711
+  },
+  {
+   "ts": 1792448616,
+   "kwater": 412,
+   "related_1y": 16724,
+   "journal_corpus": 103711
+  },
+  {
+   "ts": 1792472142,
+   "kwater": 412,
+   "related_1y": 16724,
+   "journal_corpus": 103711
+  },
+  {
+   "ts": 1792496644,
+   "kwater": 412,
+   "related_1y": 16762,
+   "journal_corpus": 103739
+  },
+  {
+   "ts": 1792516384,
+   "kwater": 412,
+   "related_1y": 16762,
+   "journal_corpus": 103739
+  },
+  {
+   "ts": 1792532401,
+   "kwater": 412,
+   "related_1y": 16762,
+   "journal_corpus": 103739
+  },
+  {
+   "ts": 1792558500,
+   "kwater": 412,
+   "related_1y": 16762,
+   "journal_corpus": 103739
+  },
+  {
+   "ts": 1792583751,
+   "kwater": 412,
+   "related_1y": 16822,
+   "journal_corpus": 103756
+  },
+  {
+   "ts": 1792602946,
+   "kwater": 412,
+   "related_1y": 16822,
+   "journal_corpus": 103756
+  },
+  {
+   "ts": 1792619145,
+   "kwater": 412,
+   "related_1y": 16822,
+   "journal_corpus": 103756
+  },
+  {
+   "ts": 1792644885,
+   "kwater": 412,
+   "related_1y": 16822,
+   "journal_corpus": 103756
+  },
+  {
+   "ts": 1792670309,
+   "kwater": 412,
+   "related_1y": 16863,
+   "journal_corpus": 103773
+  },
+  {
+   "ts": 1792689262,
+   "kwater": 412,
+   "related_1y": 16863,
+   "journal_corpus": 103773
+  },
+  {
+   "ts": 1792705189,
+   "kwater": 412,
+   "related_1y": 16884,
+   "journal_corpus": 103777
+  },
+  {
+   "ts": 1792731408,
+   "kwater": 412,
+   "related_1y": 16884,
+   "journal_corpus": 103777
+  },
+  {
+   "ts": 1792755853,
+   "kwater": 412,
+   "related_1y": 16911,
+   "journal_corpus": 103789
+  },
+  {
+   "ts": 1792775527,
+   "kwater": 412,
+   "related_1y": 16911,
+   "journal_corpus": 103789
+  },
+  {
+   "ts": 1792790826,
+   "kwater": 412,
+   "related_1y": 16911,
+   "journal_corpus": 103789
+  },
+  {
+   "ts": 1792816911,
+   "kwater": 412,
+   "related_1y": 16911,
+   "journal_corpus": 103789
+  },
+  {
+   "ts": 1792840052,
+   "kwater": 412,
+   "related_1y": 16986,
+   "journal_corpus": 103807
+  },
+  {
+   "ts": 1792857622,
+   "kwater": 412,
+   "related_1y": 16986,
+   "journal_corpus": 103807
+  },
+  {
+   "ts": 1792875209,
+   "kwater": 412,
+   "related_1y": 16986,
+   "journal_corpus": 103807
+  },
+  {
+   "ts": 1792903658,
+   "kwater": 412,
+   "related_1y": 16986,
+   "journal_corpus": 103807
+  },
+  {
+   "ts": 1792928244,
+   "kwater": 412,
+   "related_1y": 17023,
+   "journal_corpus": 103829
+  },
+  {
+   "ts": 1792945644,
+   "kwater": 412,
+   "related_1y": 17023,
+   "journal_corpus": 103829
+  },
+  {
+   "ts": 1792990366,
+   "kwater": 412,
+   "related_1y": 17023,
+   "journal_corpus": 103829
+  },
+  {
+   "ts": 1793020204,
+   "kwater": 415,
+   "related_1y": 17116,
+   "journal_corpus": 103831
+  },
+  {
+   "ts": 1793054549,
+   "kwater": 415,
+   "related_1y": 17116,
+   "journal_corpus": 103831
+  },
+  {
+   "ts": 1793077872,
+   "kwater": 415,
+   "related_1y": 17116,
+   "journal_corpus": 103831
+  },
+  {
+   "ts": 1793103487,
+   "kwater": 415,
+   "related_1y": 17116,
+   "journal_corpus": 103831
+  },
+  {
+   "ts": 1793139488,
+   "kwater": 415,
+   "related_1y": 17282,
+   "journal_corpus": 103800
+  },
+  {
+   "ts": 1793166464,
+   "kwater": 415,
+   "related_1y": 17282,
+   "journal_corpus": 103800
+  },
+  {
+   "ts": 1793175853,
+   "kwater": 415,
+   "related_1y": 17282,
+   "journal_corpus": 37867
+  },
+  {
+   "ts": 1793192458,
+   "kwater": 415,
+   "related_1y": 17403,
+   "journal_corpus": 117179
+  },
+  {
+   "ts": 1793227101,
+   "kwater": 415,
+   "related_1y": 17418,
+   "journal_corpus": 117179
+  },
+  {
+   "ts": 1793253178,
+   "kwater": 415,
+   "related_1y": 17418,
+   "journal_corpus": 117179
+  },
+  {
+   "ts": 1793279303,
+   "kwater": 412,
+   "related_1y": 17463,
+   "journal_corpus": 117208
+  },
+  {
+   "ts": 1793314071,
+   "kwater": 412,
+   "related_1y": 17463,
+   "journal_corpus": 117208
+  },
+  {
+   "ts": 1793339668,
+   "kwater": 412,
+   "related_1y": 17463,
+   "journal_corpus": 117208
+  },
+  {
+   "ts": 1793365277,
+   "kwater": 412,
+   "related_1y": 17463,
+   "journal_corpus": 117208
+  },
+  {
+   "ts": 1793399089,
+   "kwater": 412,
+   "related_1y": 17065,
+   "journal_corpus": 117231
+  },
+  {
+   "ts": 1793425796,
+   "kwater": 412,
+   "related_1y": 16385,
+   "journal_corpus": 0
+  },
+  {
+   "ts": 1793450348,
+   "kwater": 412,
+   "related_1y": 17065,
+   "journal_corpus": 117231
+  }
+ ],
+ "updated": 1793450348,
+ "window_from": "2025-07-01",
+ "institutes": {
+  "INST-01": {
+   "name": "경영연구소",
+   "keyword": "water utility management",
+   "recent_1y": 2038,
+   "by_year": {
+    "2022": 613,
+    "2023": 707,
+    "2024": 964,
+    "2025": 1317,
+    "2026": 1413
+   },
+   "keywords": [
+    "water utility management",
+    "water policy governance",
+    "water economics pricing",
+    "water industry innovation",
+    "integrated water resources management policy"
+   ],
+   "by_kw": {
+    "water utility management": {
+     "2022": 613,
+     "2023": 707,
+     "2024": 964,
+     "2025": 1317,
+     "2026": 1413
+    },
+    "water policy governance": {
+     "2022": 682,
+     "2023": 832,
+     "2024": 1094,
+     "2025": 2784,
+     "2026": 4433
+    },
+    "water economics pricing": {
+     "2022": 84,
+     "2023": 88,
+     "2024": 100,
+     "2025": 117,
+     "2026": 224
+    },
+    "water industry innovation": {
+     "2022": 496,
+     "2023": 611,
+     "2024": 1032,
+     "2025": 1662,
+     "2026": 1387
+    },
+    "integrated water resources management policy": {
+     "2022": 265,
+     "2023": 253,
+     "2024": 415,
+     "2025": 744,
+     "2026": 800
+    }
+   },
+   "by_year_all": {
+    "2022": 1908,
+    "2023": 2219,
+    "2024": 3228,
+    "2025": 5873,
+    "2026": 7372
+   },
+   "by_year_all_top10": {
+    "2022": 329,
+    "2023": 404,
+    "2024": 563,
+    "2025": 869,
+    "2026": 764
+   },
+   "by_kw_top10": {
+    "water utility management": {
+     "2022": 81,
+     "2023": 87,
+     "2024": 118,
+     "2025": 145,
+     "2026": 131
+    },
+    "water policy governance": {
+     "2022": 142,
+     "2023": 190,
+     "2024": 224,
+     "2025": 439,
+     "2026": 487
+    },
+    "water economics pricing": {
+     "2022": 12,
+     "2023": 11,
+     "2024": 10,
+     "2025": 13,
+     "2026": 6
+    },
+    "water industry innovation": {
+     "2022": 90,
+     "2023": 116,
+     "2024": 204,
+     "2025": 274,
+     "2026": 149
+    },
+    "integrated water resources management policy": {
+     "2022": 42,
+     "2023": 41,
+     "2024": 70,
+     "2025": 112,
+     "2026": 80
+    }
+   },
+   "cit_updated": 1793425796
+  },
+  "INST-02": {
+   "name": "수자원환경연구소",
+   "keyword": "water resources hydrology",
+   "recent_1y": 910,
+   "by_year": {
+    "2022": 558,
+    "2023": 567,
+    "2024": 619,
+    "2025": 689,
+    "2026": 644
+   },
+   "keywords": [
+    "water resources hydrology",
+    "watershed management",
+    "river water quality",
+    "harmful algal bloom reservoir",
+    "aquatic ecosystem restoration",
+    "drought flood risk water"
+   ],
+   "by_kw": {
+    "water resources hydrology": {
+     "2022": 558,
+     "2023": 567,
+     "2024": 619,
+     "2025": 689,
+     "2026": 644
+    },
+    "watershed management": {
+     "2022": 2856,
+     "2023": 3122,
+     "2024": 3508,
+     "2025": 4668,
+     "2026": 4807
+    },
+    "river water quality": {
+     "2022": 5596,
+     "2023": 6034,
+     "2024": 6671,
+     "2025": 7796,
+     "2026": 7269
+    },
+    "harmful algal bloom reservoir": {
+     "2022": 53,
+     "2023": 59,
+     "2024": 68,
+     "2025": 72,
+     "2026": 86
+    },
+    "aquatic ecosystem restoration": {
+     "2022": 302,
+     "2023": 380,
+     "2024": 432,
+     "2025": 698,
+     "2026": 690
+    },
+    "drought flood risk water": {
+     "2022": 402,
+     "2023": 520,
+     "2024": 496,
+     "2025": 792,
+     "2026": 1023
+    }
+   },
+   "by_year_all": {
+    "2022": 8982,
+    "2023": 9871,
+    "2024": 10864,
+    "2025": 13436,
+    "2026": 13256
+   },
+   "by_year_all_top10": {
+    "2022": 981,
+    "2023": 1036,
+    "2024": 1160,
+    "2025": 1247,
+    "2026": 1026
+   },
+   "by_kw_top10": {
+    "water resources hydrology": {
+     "2022": 56,
+     "2023": 62,
+     "2024": 72,
+     "2025": 70,
+     "2026": 39
+    },
+    "watershed management": {
+     "2022": 329,
+     "2023": 381,
+     "2024": 408,
+     "2025": 488,
+     "2026": 416
+    },
+    "river water quality": {
+     "2022": 567,
+     "2023": 536,
+     "2024": 621,
+     "2025": 607,
+     "2026": 493
+    },
+    "harmful algal bloom reservoir": {
+     "2022": 5,
+     "2023": 7,
+     "2024": 11,
+     "2025": 11,
+     "2026": 4
+    },
+    "aquatic ecosystem restoration": {
+     "2022": 50,
+     "2023": 53,
+     "2024": 62,
+     "2025": 83,
+     "2026": 61
+    },
+    "drought flood risk water": {
+     "2022": 51,
+     "2023": 79,
+     "2024": 80,
+     "2025": 119,
+     "2026": 121
+    }
+   }
+  },
+  "INST-03": {
+   "name": "상하수도연구소",
+   "keyword": "drinking water treatment",
+   "recent_1y": 6141,
+   "by_year": {
+    "2022": 3893,
+    "2023": 4116,
+    "2024": 4305,
+    "2025": 4501,
+    "2026": 4100
+   },
+   "keywords": [
+    "drinking water treatment",
+    "water distribution network",
+    "membrane filtration water",
+    "sewage wastewater treatment",
+    "water quality sensor pipeline",
+    "non-revenue water leakage"
+   ],
+   "by_kw": {
+    "drinking water treatment": {
+     "2022": 3893,
+     "2023": 4116,
+     "2024": 4305,
+     "2025": 4501,
+     "2026": 4100
+    },
+    "water distribution network": {
+     "2022": 2879,
+     "2023": 2876,
+     "2024": 3459,
+     "2025": 4321,
+     "2026": 5128
+    },
+    "membrane filtration water": {
+     "2022": 1603,
+     "2023": 1611,
+     "2024": 1767,
+     "2025": 2035,
+     "2026": 1975
+    },
+    "sewage wastewater treatment": {
+     "2022": 1624,
+     "2023": 1662,
+     "2024": 1684,
+     "2025": 1617,
+     "2026": 1250
+    },
+    "water quality sensor pipeline": {
+     "2022": 23,
+     "2023": 41,
+     "2024": 41,
+     "2025": 70,
+     "2026": 147
+    },
+    "non-revenue water leakage": {
+     "2022": 19,
+     "2023": 23,
+     "2024": 26,
+     "2025": 40,
+     "2026": 65
+    }
+   },
+   "by_kw_top10": {
+    "drinking water treatment": {
+     "2022": 394,
+     "2023": 450,
+     "2024": 454,
+     "2025": 455,
+     "2026": 343
+    },
+    "water distribution network": {
+     "2022": 380,
+     "2023": 423,
+     "2024": 558,
+     "2025": 578,
+     "2026": 498
+    },
+    "membrane filtration water": {
+     "2022": 243,
+     "2023": 263,
+     "2024": 311,
+     "2025": 326,
+     "2026": 249
+    },
+    "sewage wastewater treatment": {
+     "2022": 222,
+     "2023": 238,
+     "2024": 228,
+     "2025": 213,
+     "2026": 157
+    },
+    "water quality sensor pipeline": {
+     "2022": 5,
+     "2023": 5,
+     "2024": 3,
+     "2025": 7,
+     "2026": 11
+    },
+    "non-revenue water leakage": {
+     "2022": 4,
+     "2023": 0,
+     "2024": 3,
+     "2025": 0,
+     "2026": 3
+    }
+   },
+   "cit_updated": 1793450348,
+   "by_year_all": {
+    "2022": 9381,
+    "2023": 9619,
+    "2024": 10556,
+    "2025": 11819,
+    "2026": 11900
+   },
+   "by_year_all_top10": {
+    "2022": 1164,
+    "2023": 1277,
+    "2024": 1465,
+    "2025": 1480,
+    "2026": 1186
+   }
+  },
+  "INST-04": {
+   "name": "물인프라안전연구소",
+   "keyword": "dam safety monitoring",
+   "recent_1y": 790,
+   "by_year": {
+    "2022": 146,
+    "2023": 227,
+    "2024": 287,
+    "2025": 499,
+    "2026": 528
+   },
+   "keywords": [
+    "dam safety monitoring",
+    "water infrastructure resilience",
+    "pipeline structural health water",
+    "seismic safety dam",
+    "aging water infrastructure",
+    "levee embankment safety"
+   ],
+   "by_kw": {
+    "dam safety monitoring": {
+     "2022": 146,
+     "2023": 227,
+     "2024": 287,
+     "2025": 499,
+     "2026": 528
+    },
+    "water infrastructure resilience": {
+     "2022": 506,
+     "2023": 620,
+     "2024": 1213,
+     "2025": 2967,
+     "2026": 4064
+    },
+    "pipeline structural health water": {
+     "2022": 12,
+     "2023": 9,
+     "2024": 23,
+     "2025": 35,
+     "2026": 63
+    },
+    "seismic safety dam": {
+     "2022": 96,
+     "2023": 77,
+     "2024": 110,
+     "2025": 223,
+     "2026": 201
+    },
+    "aging water infrastructure": {
+     "2022": 363,
+     "2023": 388,
+     "2024": 622,
+     "2025": 1038,
+     "2026": 1402
+    },
+    "levee embankment safety": {
+     "2022": 2,
+     "2023": 10,
+     "2024": 11,
+     "2025": 12,
+     "2026": 11
+    }
+   },
+   "by_year_all": {
+    "2022": 1055,
+    "2023": 1232,
+    "2024": 2123,
+    "2025": 4392,
+    "2026": 5796
+   },
+   "by_year_all_top10": {
+    "2022": 151,
+    "2023": 202,
+    "2024": 344,
+    "2025": 576,
+    "2026": 574
+   },
+   "by_kw_top10": {
+    "dam safety monitoring": {
+     "2022": 21,
+     "2023": 36,
+     "2024": 46,
+     "2025": 70,
+     "2026": 68
+    },
+    "water infrastructure resilience": {
+     "2022": 74,
+     "2023": 111,
+     "2024": 225,
+     "2025": 428,
+     "2026": 410
+    },
+    "pipeline structural health water": {
+     "2022": 3,
+     "2023": 2,
+     "2024": 1,
+     "2025": 3,
+     "2026": 6
+    },
+    "seismic safety dam": {
+     "2022": 6,
+     "2023": 5,
+     "2024": 6,
+     "2025": 8,
+     "2026": 19
+    },
+    "aging water infrastructure": {
+     "2022": 58,
+     "2023": 67,
+     "2024": 80,
+     "2025": 110,
+     "2026": 118
+    },
+    "levee embankment safety": {
+     "2022": 0,
+     "2023": 1,
+     "2024": 2,
+     "2025": 0,
+     "2026": 2
+    }
+   },
+   "cit_updated": 1793399089
+  },
+  "INST-05": {
+   "name": "물에너지연구소",
+   "keyword": "hydropower generation",
+   "recent_1y": 2206,
+   "by_year": {
+    "2022": 982,
+    "2023": 1041,
+    "2024": 1240,
+    "2025": 1495,
+    "2026": 1530
+   },
+   "keywords": [
+    "hydropower generation",
+    "pumped storage hydropower",
+    "floating photovoltaic reservoir",
+    "small hydro turbine",
+    "water energy nexus",
+    "green hydrogen water"
+   ],
+   "by_kw": {
+    "hydropower generation": {
+     "2022": 982,
+     "2023": 1041,
+     "2024": 1240,
+     "2025": 1495,
+     "2026": 1530
+    },
+    "pumped storage hydropower": {
+     "2022": 198,
+     "2023": 217,
+     "2024": 306,
+     "2025": 371,
+     "2026": 452
+    },
+    "floating photovoltaic reservoir": {
+     "2022": 57,
+     "2023": 62,
+     "2024": 86,
+     "2025": 102,
+     "2026": 126
+    },
+    "small hydro turbine": {
+     "2022": 94,
+     "2023": 122,
+     "2024": 117,
+     "2025": 114,
+     "2026": 104
+    },
+    "water energy nexus": {
+     "2022": 986,
+     "2023": 936,
+     "2024": 1163,
+     "2025": 1234,
+     "2026": 1594
+    },
+    "green hydrogen water": {
+     "2022": 1578,
+     "2023": 2215,
+     "2024": 3117,
+     "2025": 3849,
+     "2026": 3824
+    }
+   },
+   "by_year_all": {
+    "2022": 3597,
+    "2023": 4214,
+    "2024": 5503,
+    "2025": 6524,
+    "2026": 6980
+   },
+   "by_year_all_top10": {
+    "2022": 628,
+    "2023": 722,
+    "2024": 874,
+    "2025": 961,
+    "2026": 899
+   },
+   "by_kw_top10": {
+    "hydropower generation": {
+     "2022": 134,
+     "2023": 126,
+     "2024": 162,
+     "2025": 159,
+     "2026": 121
+    },
+    "pumped storage hydropower": {
+     "2022": 31,
+     "2023": 25,
+     "2024": 44,
+     "2025": 44,
+     "2026": 39
+    },
+    "floating photovoltaic reservoir": {
+     "2022": 20,
+     "2023": 12,
+     "2024": 14,
+     "2025": 9,
+     "2026": 11
+    },
+    "small hydro turbine": {
+     "2022": 14,
+     "2023": 13,
+     "2024": 6,
+     "2025": 9,
+     "2026": 8
+    },
+    "water energy nexus": {
+     "2022": 158,
+     "2023": 157,
+     "2024": 174,
+     "2025": 184,
+     "2026": 201
+    },
+    "green hydrogen water": {
+     "2022": 323,
+     "2023": 453,
+     "2024": 570,
+     "2025": 640,
+     "2026": 592
+    }
+   },
+   "cit_updated": 1793425796
+  },
+  "INST-06": {
+   "name": "수자원위성연구소",
+   "keyword": "satellite remote sensing water",
+   "recent_1y": 4300,
+   "by_year": {
+    "2022": 1904,
+    "2023": 2063,
+    "2024": 2563,
+    "2025": 3036,
+    "2026": 2940
+   },
+   "keywords": [
+    "satellite remote sensing water",
+    "SAR flood mapping",
+    "water body detection satellite",
+    "soil moisture satellite",
+    "river discharge remote sensing",
+    "water quality remote sensing"
+   ],
+   "by_kw": {
+    "satellite remote sensing water": {
+     "2022": 1904,
+     "2023": 2063,
+     "2024": 2563,
+     "2025": 3036,
+     "2026": 2940
+    },
+    "SAR flood mapping": {
+     "2022": 147,
+     "2023": 135,
+     "2024": 188,
+     "2025": 282,
+     "2026": 449
+    },
+    "water body detection satellite": {
+     "2022": 109,
+     "2023": 149,
+     "2024": 175,
+     "2025": 257,
+     "2026": 244
+    },
+    "soil moisture satellite": {
+     "2022": 1081,
+     "2023": 1130,
+     "2024": 1244,
+     "2025": 1473,
+     "2026": 1752
+    },
+    "river discharge remote sensing": {
+     "2022": 219,
+     "2023": 213,
+     "2024": 232,
+     "2025": 275,
+     "2026": 300
+    },
+    "water quality remote sensing": {
+     "2022": 977,
+     "2023": 1068,
+     "2024": 1303,
+     "2025": 1797,
+     "2026": 1785
+    }
+   },
+   "by_year_all": {
+    "2022": 3446,
+    "2023": 3626,
+    "2024": 4373,
+    "2025": 5386,
+    "2026": 5769
+   },
+   "by_year_all_top10": {
+    "2022": 495,
+    "2023": 525,
+    "2024": 724,
+    "2025": 720,
+    "2026": 577
+   },
+   "by_kw_top10": {
+    "satellite remote sensing water": {
+     "2022": 280,
+     "2023": 317,
+     "2024": 403,
+     "2025": 377,
+     "2026": 288
+    },
+    "SAR flood mapping": {
+     "2022": 35,
+     "2023": 34,
+     "2024": 56,
+     "2025": 68,
+     "2026": 53
+    },
+    "water body detection satellite": {
+     "2022": 20,
+     "2023": 28,
+     "2024": 28,
+     "2025": 31,
+     "2026": 19
+    },
+    "soil moisture satellite": {
+     "2022": 138,
+     "2023": 146,
+     "2024": 189,
+     "2025": 195,
+     "2026": 159
+    },
+    "river discharge remote sensing": {
+     "2022": 17,
+     "2023": 23,
+     "2024": 36,
+     "2025": 28,
+     "2026": 28
+    },
+    "water quality remote sensing": {
+     "2022": 153,
+     "2023": 159,
+     "2024": 214,
+     "2025": 256,
+     "2026": 196
+    }
+   }
+  },
+  "INST-07": {
+   "name": "AI연구소",
+   "keyword": "machine learning hydrology",
+   "recent_1y": 680,
+   "by_year": {
+    "2022": 177,
+    "2023": 228,
+    "2024": 333,
+    "2025": 397,
+    "2026": 509
+   },
+   "keywords": [
+    "machine learning hydrology",
+    "deep learning water quality prediction",
+    "digital twin water system",
+    "AI water management",
+    "large language model water",
+    "anomaly detection water infrastructure"
+   ],
+   "by_kw": {
+    "machine learning hydrology": {
+     "2022": 177,
+     "2023": 228,
+     "2024": 333,
+     "2025": 397,
+     "2026": 509
+    },
+    "deep learning water quality prediction": {
+     "2022": 131,
+     "2023": 199,
+     "2024": 317,
+     "2025": 529,
+     "2026": 502
+    },
+    "digital twin water system": {
+     "2022": 140,
+     "2023": 215,
+     "2024": 341,
+     "2025": 678,
+     "2026": 1217
+    },
+    "AI water management": {
+     "2022": 226,
+     "2023": 431,
+     "2024": 1011,
+     "2025": 2519,
+     "2026": 3107
+    },
+    "large language model water": {
+     "2022": 93,
+     "2023": 153,
+     "2024": 188,
+     "2025": 394,
+     "2026": 866
+    },
+    "anomaly detection water infrastructure": {
+     "2022": 27,
+     "2023": 43,
+     "2024": 86,
+     "2025": 227,
+     "2026": 327
+    }
+   },
+   "by_kw_top10": {
+    "machine learning hydrology": {
+     "2022": 47,
+     "2023": 45,
+     "2024": 60,
+     "2025": 66,
+     "2026": 59
+    },
+    "deep learning water quality prediction": {
+     "2022": 42,
+     "2023": 67,
+     "2024": 92,
+     "2025": 120,
+     "2026": 69
+    },
+    "digital twin water system": {
+     "2022": 37,
+     "2023": 50,
+     "2024": 66,
+     "2025": 130,
+     "2026": 176
+    },
+    "AI water management": {
+     "2022": 59,
+     "2023": 111,
+     "2024": 272,
+     "2025": 512,
+     "2026": 374
+    },
+    "large language model water": {
+     "2022": 15,
+     "2023": 30,
+     "2024": 37,
+     "2025": 67,
+     "2026": 86
+    },
+    "anomaly detection water infrastructure": {
+     "2022": 4,
+     "2023": 10,
+     "2024": 14,
+     "2025": 32,
+     "2026": 45
+    }
+   },
+   "cit_updated": 1793450348,
+   "by_year_all": {
+    "2022": 719,
+    "2023": 1118,
+    "2024": 2000,
+    "2025": 4121,
+    "2026": 5505
+   },
+   "by_year_all_top10": {
+    "2022": 185,
+    "2023": 271,
+    "2024": 486,
+    "2025": 802,
+    "2026": 662
+   }
+  }
+ },
+ "journals": {
+  "J01": {
+   "name": "Water Resources Research",
+   "sources": [
+    {
+     "id": "S204847658",
+     "name": "Water Resources Research",
+     "issn_l": "0043-1397"
+    }
+   ],
+   "total": 14773,
+   "last_year": 2026,
+   "by_year": {
+    "2000": 353,
+    "2001": 323,
+    "2002": 344,
+    "2003": 390,
+    "2004": 527,
+    "2005": 341,
+    "2006": 406,
+    "2007": 479,
+    "2008": 548,
+    "2009": 473,
+    "2010": 493,
+    "2011": 556,
+    "2012": 543,
+    "2013": 652,
+    "2014": 608,
+    "2015": 572,
+    "2016": 609,
+    "2017": 609,
+    "2018": 624,
+    "2019": 630,
+    "2020": 735,
+    "2021": 684,
+    "2022": 668,
+    "2023": 589,
+    "2024": 634,
+    "2025": 718,
+    "2026": 665
+   }
+  },
+  "J02": {
+   "name": "Journal of Hydrology",
+   "sources": [
+    {
+     "id": "S55737203",
+     "name": "Journal of Hydrology",
+     "issn_l": "0022-1694"
+    }
+   ],
+   "total": 23129,
+   "last_year": 2026,
+   "by_year": {
+    "2000": 251,
+    "2001": 243,
+    "2002": 327,
+    "2003": 340,
+    "2004": 485,
+    "2005": 461,
+    "2006": 482,
+    "2007": 467,
+    "2008": 377,
+    "2009": 544,
+    "2010": 471,
+    "2011": 579,
+    "2012": 660,
+    "2013": 633,
+    "2014": 854,
+    "2015": 798,
+    "2016": 1235,
+    "2017": 886,
+    "2018": 886,
+    "2019": 1141,
+    "2020": 1346,
+    "2021": 1338,
+    "2022": 1512,
+    "2023": 1403,
+    "2024": 1829,
+    "2025": 1937,
+    "2026": 1644
+   }
+  },
+  "J03": {
+   "name": "Advances in Water Resources",
+   "sources": [
+    {
+     "id": "S145524021",
+     "name": "Advances in Water Resources",
+     "issn_l": "0309-1708"
+    }
+   ],
+   "total": 4792,
+   "last_year": 2026,
+   "by_year": {
+    "2000": 63,
+    "2001": 71,
+    "2002": 120,
+    "2003": 110,
+    "2004": 105,
+    "2005": 195,
+    "2006": 151,
+    "2007": 122,
+    "2008": 156,
+    "2009": 128,
+    "2010": 164,
+    "2011": 168,
+    "2012": 211,
+    "2013": 163,
+    "2014": 177,
+    "2015": 238,
+    "2016": 241,
+    "2017": 306,
+    "2018": 220,
+    "2019": 215,
+    "2020": 256,
+    "2021": 191,
+    "2022": 166,
+    "2023": 165,
+    "2024": 194,
+    "2025": 226,
+    "2026": 270
+   }
+  },
+  "J04": {
+   "name": "Water Resources Management",
+   "sources": [
+    {
+     "id": "S17551360",
+     "name": "Water Resources Management",
+     "issn_l": "0920-4741"
+    }
+   ],
+   "total": 6185,
+   "last_year": 2026,
+   "by_year": {
+    "2000": 28,
+    "2001": 28,
+    "2002": 26,
+    "2003": 29,
+    "2004": 42,
+    "2005": 50,
+    "2006": 195,
+    "2007": 116,
+    "2008": 196,
+    "2009": 166,
+    "2010": 200,
+    "2011": 201,
+    "2012": 281,
+    "2013": 255,
+    "2014": 403,
+    "2015": 309,
+    "2016": 347,
+    "2017": 318,
+    "2018": 282,
+    "2019": 274,
+    "2020": 280,
+    "2021": 305,
+    "2022": 371,
+    "2023": 298,
+    "2024": 360,
+    "2025": 318,
+    "2026": 507
+   }
+  },
+  "J05": {
+   "name": "Journal of Water Resources Planning and Management",
+   "sources": [
+    {
+     "id": "S127754761",
+     "name": "Journal of Water Resources Planning and Management",
+     "issn_l": "0733-9496"
+    }
+   ],
+   "total": 2736,
+   "last_year": 2026,
+   "by_year": {
+    "2000": 60,
+    "2001": 69,
+    "2002": 71,
+    "2003": 66,
+    "2004": 60,
+    "2005": 58,
+    "2006": 67,
+    "2007": 74,
+    "2008": 64,
+    "2009": 110,
+    "2010": 81,
+    "2011": 76,
+    "2012": 115,
+    "2013": 94,
+    "2014": 85,
+    "2015": 122,
+    "2016": 121,
+    "2017": 147,
+    "2018": 146,
+    "2019": 125,
+    "2020": 171,
+    "2021": 190,
+    "2022": 126,
+    "2023": 118,
+    "2024": 106,
+    "2025": 103,
+    "2026": 111
+   }
+  },
+  "J06": {
+   "name": "Hydrology and Earth System Sciences",
+   "sources": [
+    {
+     "id": "S93121129",
+     "name": "Hydrology and earth system sciences",
+     "issn_l": "1027-5606"
+    }
+   ],
+   "total": 19454,
+   "last_year": 2026,
+   "by_year": {
+    "2000": 53,
+    "2001": 55,
+    "2002": 79,
+    "2003": 75,
+    "2004": 111,
+    "2005": 60,
+    "2006": 73,
+    "2007": 142,
+    "2008": 107,
+    "2009": 184,
+    "2010": 194,
+    "2011": 272,
+    "2012": 320,
+    "2013": 347,
+    "2014": 339,
+    "2015": 293,
+    "2016": 1916,
+    "2017": 2296,
+    "2018": 2129,
+    "2019": 1897,
+    "2020": 2018,
+    "2021": 1987,
+    "2022": 1616,
+    "2023": 1020,
+    "2024": 1023,
+    "2025": 551,
+    "2026": 297
+   }
+  },
+  "J07": {
+   "name": "Hydrological Processes",
+   "sources": [
+    {
+     "id": "S75830442",
+     "name": "Hydrological Processes",
+     "issn_l": "0885-6087"
+    }
+   ],
+   "total": 10022,
+   "last_year": 2026,
+   "by_year": {
+    "2000": 255,
+    "2001": 330,
+    "2002": 365,
+    "2003": 289,
+    "2004": 351,
+    "2005": 329,
+    "2006": 379,
+    "2007": 470,
+    "2008": 330,
+    "2009": 361,
+    "2010": 415,
+    "2011": 542,
+    "2012": 541,
+    "2013": 441,
+    "2014": 310,
+    "2015": 384,
+    "2016": 366,
+    "2017": 336,
+    "2018": 383,
+    "2019": 335,
+    "2020": 376,
+    "2021": 441,
+    "2022": 346,
+    "2023": 268,
+    "2024": 329,
+    "2025": 355,
+    "2026": 395
+   }
+  },
+  "J08": {
+   "name": "Journal of Hydrologic Engineering",
+   "sources": [
+    {
+     "id": "S109720773",
+     "name": "Journal of Hydrologic Engineering",
+     "issn_l": "1084-0699"
+    }
+   ],
+   "total": 3463,
+   "last_year": 2026,
+   "by_year": {
+    "2000": 61,
+    "2001": 89,
+    "2002": 72,
+    "2003": 74,
+    "2004": 71,
+    "2005": 75,
+    "2006": 96,
+    "2007": 78,
+    "2008": 164,
+    "2009": 224,
+    "2010": 156,
+    "2011": 186,
+    "2012": 209,
+    "2013": 192,
+    "2014": 232,
+    "2015": 195,
+    "2016": 163,
+    "2017": 130,
+    "2018": 137,
+    "2019": 127,
+    "2020": 170,
+    "2021": 106,
+    "2022": 85,
+    "2023": 85,
+    "2024": 98,
+    "2025": 91,
+    "2026": 97
+   }
+  },
+  "J09": {
+   "name": "Water Research",
+   "sources": [
+    {
+     "id": "S52566953",
+     "name": "Water Research",
+     "issn_l": "0043-1354"
+    }
+   ],
+   "total": 24295,
+   "last_year": 2026,
+   "by_year": {
+    "2000": 534,
+    "2001": 552,
+    "2002": 665,
+    "2003": 592,
+    "2004": 480,
+    "2005": 548,
+    "2006": 501,
+    "2007": 668,
+    "2008": 467,
+    "2009": 622,
+    "2010": 625,
+    "2011": 643,
+    "2012": 660,
+    "2013": 733,
+    "2014": 714,
+    "2015": 691,
+    "2016": 903,
+    "2017": 1164,
+    "2018": 894,
+    "2019": 1053,
+    "2020": 1207,
+    "2021": 1064,
+    "2022": 1341,
+    "2023": 1370,
+    "2024": 1807,
+    "2025": 2021,
+    "2026": 1776
+   }
+  },
+  "J10": {
+   "name": "Journal of Contaminant Hydrology",
+   "sources": [
+    {
+     "id": "S20728117",
+     "name": "Journal of Contaminant Hydrology",
+     "issn_l": "0169-7722"
+    }
+   ],
+   "total": 3636,
+   "last_year": 2026,
+   "by_year": {
+    "2000": 108,
+    "2001": 132,
+    "2002": 107,
+    "2003": 179,
+    "2004": 126,
+    "2005": 138,
+    "2006": 171,
+    "2007": 106,
+    "2008": 149,
+    "2009": 106,
+    "2010": 115,
+    "2011": 102,
+    "2012": 129,
+    "2013": 124,
+    "2014": 145,
+    "2015": 120,
+    "2016": 108,
+    "2017": 108,
+    "2018": 105,
+    "2019": 99,
+    "2020": 113,
+    "2021": 130,
+    "2022": 133,
+    "2023": 104,
+    "2024": 146,
+    "2025": 287,
+    "2026": 246
+   }
+  },
+  "J11": {
+   "name": "한국수자원학회논문집",
+   "sources": [
+    {
+     "id": "S85623882",
+     "name": "Journal of Korea Water Resources Association",
+     "issn_l": "1226-6280"
+    }
+   ],
+   "total": 2187,
+   "last_year": 2021,
+   "by_year": {
+    "2000": 231,
+    "2001": 68,
+    "2002": 73,
+    "2003": 89,
+    "2004": 100,
+    "2005": 97,
+    "2006": 97,
+    "2007": 88,
+    "2008": 106,
+    "2009": 95,
+    "2010": 90,
+    "2011": 86,
+    "2012": 103,
+    "2013": 100,
+    "2014": 104,
+    "2015": 102,
+    "2016": 103,
+    "2017": 85,
+    "2018": 112,
+    "2019": 97,
+    "2020": 98,
+    "2021": 63
+   },
+   "coverage_to": 2021,
+   "check_sources": []
+  },
+  "J12": {
+   "name": "대한토목학회논문집",
+   "sources": [
+    {
+     "id": "S4306516275",
+     "name": "Journal of the Korean Society of Civil Engineers",
+     "issn_l": "1015-6348"
+    }
+   ],
+   "total": 2559,
+   "last_year": 2021,
+   "by_year": {
+    "2000": 78,
+    "2001": 9,
+    "2002": 109,
+    "2003": 349,
+    "2004": 217,
+    "2005": 196,
+    "2006": 164,
+    "2007": 148,
+    "2008": 160,
+    "2009": 105,
+    "2010": 31,
+    "2011": 40,
+    "2012": 124,
+    "2013": 242,
+    "2014": 186,
+    "2015": 143,
+    "2016": 116,
+    "2017": 71,
+    "2018": 28,
+    "2019": 24,
+    "2020": 17,
+    "2021": 2
+   },
+   "coverage_to": 2021
+  }
+ },
+ "trend_years": [
+  "2022",
+  "2023",
+  "2024",
+  "2025",
+  "2026"
+ ],
+ "trend_basis": "연구소 키워드 전체(5~6개)를 OR로 묶은 title_and_abstract.search, 출판연도별 실측 (키워드마다 지금 수집과 같은 띄어쓰기 검색 · 올해는 진행 중·색인 지연)",
+ "baseline": {
+  "label": "OpenAlex 전체",
+  "by_year": {
+   "2022": 10242936,
+   "2023": 10935093,
+   "2024": 10995799,
+   "2025": 14667338,
+   "2026": 35255398
+  },
+  "by_year_top10": {
+   "2022": 835075,
+   "2023": 880287,
+   "2024": 952875,
+   "2025": 1026699,
+   "2026": 858693
+  }
+ },
+ "kwater_citation": {
+  "label": "Korea Water Resources Corporation (South Korea)",
+  "by_year": {
+   "2022": 64,
+   "2023": 66,
+   "2024": 67,
+   "2025": 48,
+   "2026": 45
+  },
+  "by_year_top10": {
+   "2022": 7,
+   "2023": 12,
+   "2024": 6,
+   "2025": 10,
+   "2026": 4
+  }
+ },
+ "citation_basis": "피인용 상위 10% = OpenAlex citation_normalized_percentile.is_in_top_10_percent (같은 분야·같은 출판연도 논문 중 피인용 상위 10%) — 세계 평균 약 10%, 최근 연도는 인용이 쌓이는 중"
+}
