@@ -40,7 +40,8 @@ with c2:
                   "plan": ("설계 중", "#94a3b8"), "error": ("오류", "#f87171")}
         names = {"openalex_collector": "해외 논문 감시 (OpenAlex)", "oa_rising": "떠오르는 주제 분석", "alio_crawler": "공공기관 보고서 수집 (ALIO)",
                  "alio_parser": "데이터소스 추출 (LLM)", "normalizer": "정규화 · 인벤토리", "kipris_collector": "특허 수집 (KIPRIS)",
-                 "ft_trainer": "자체 LLM 학습 (QLoRA)", "article_collector": "기사 · 위크시그널 수집"}
+                 "ft_trainer": "자체 LLM 학습 (QLoRA)", "article_collector": "기사 · 위크시그널 수집",
+                 "tech_map": "기술 지도 점수 (논문 × 실용화)"}
         cards = []
         for a in D.agents():
             lab, col = st_map.get(a.get("state"), (a.get("state", "-"), "#94a3b8"))

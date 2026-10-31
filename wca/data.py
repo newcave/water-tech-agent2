@@ -2,6 +2,7 @@
 """데이터 — 물벗(newcave/water-tech-agent) 공개 집계(data_seed)를 실시간으로 읽고, 못 읽으면 함께 넣어 둔 snapshot을 쓴다.
 여기 있는 숫자는 모두 공개 집계(건수·비중·검정 결과)뿐 — KCI 원문·논문 목록은 없다."""
 import json
+import os
 import time
 import urllib.request
 from pathlib import Path
@@ -20,7 +21,12 @@ INST_EN = {"INST-01": "Management", "INST-02": "Water Resources & Env.", "INST-0
 
 @st.cache_data(ttl=1800, show_spinner=False)
 def load(name: str) -> dict:
-    """data_seed/<name> — GitHub 실시간, 실패하면 snapshot."""
+    """data_seed/<name> — GitHub 실시간, 실패하면 snapshot. (WCA_SEED_DIR가 있으면 그 폴더 먼저 — 로컬 시험용)"""
+    local = os.environ.get("WCA_SEED_DIR")
+    if local and (Path(local) / name).exists():
+        d = json.loads((Path(local) / name).read_text(encoding="utf-8"))
+        d["_src"] = "local"
+        return d
     try:
         with urllib.request.urlopen(RAW + name, timeout=8) as r:
             d = json.loads(r.read().decode("utf-8"))
@@ -37,7 +43,7 @@ def load(name: str) -> dict:
 
 def agents() -> list:
     names = ["openalex_collector", "oa_rising", "alio_crawler", "alio_parser", "normalizer", "kipris_collector",
-             "ft_trainer", "article_collector"]
+             "ft_trainer", "article_collector", "tech_map"]
     out = []
     for n in names:
         d = load(f"agents/{n}.json")
@@ -145,6 +151,16 @@ def oa_rising() -> dict:
 
 def assets() -> dict:
     return load("wcs_assets.json")
+
+
+# ── 기술 지도 (논문 × 실용화) ──────────────────────────────────────────
+
+def tech_scores() -> dict:
+    return load("tech_map/scores.json")
+
+
+def tech_agent() -> dict:
+    return load("agents/tech_map.json")
 
 
 def updated_label() -> str:

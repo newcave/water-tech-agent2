@@ -113,6 +113,42 @@ html, body, .stApp, .stApp p, .stApp span, .stApp div, .stApp button, .stApp inp
 .ag b { color:#fff; font-size:.9rem; }
 .ag .st { font-size:.7rem; padding:2px 8px; border-radius:999px; font-weight:600; }
 .ag p { color: var(--muted); font-size:.78rem; margin: 6px 0 0; line-height:1.45; }
+/* 기술 지도 */
+.tmstat { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+.tmstat .s { background: rgba(7,13,26,.5); border:1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+.tmstat .h { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+.tmstat b { color:#fff; font-size:.9rem; } .tmstat p { color: var(--muted); font-size:.76rem; margin:8px 0 0; line-height:1.45; }
+.pill { font-size:.7rem; padding:2px 9px; border-radius:999px; font-weight:600; white-space:nowrap; border:1px solid; }
+.pill.ok { color:#a7f3d0; background:rgba(52,211,153,.10); border-color:rgba(52,211,153,.35); }
+.pill.run { color:#a5f3fc; background:rgba(34,211,238,.10); border-color:rgba(34,211,238,.35); }
+.pill.wait { color:#fcd34d; background:rgba(245,158,11,.10); border-color:rgba(245,158,11,.35); }
+.pill.bad { color:#fecaca; background:rgba(248,113,113,.10); border-color:rgba(248,113,113,.35); }
+.pb { height:5px; border-radius:5px; background: rgba(148,163,184,.12); overflow:hidden; margin-top:9px; }
+.pb i { display:block; height:100%; border-radius:5px; background: linear-gradient(90deg, #22d3ee, #3b82f6); }
+.ql { display:grid; gap: 12px; }
+.ql .q { border-left: 3px solid var(--qc); padding: 2px 0 2px 12px; }
+.ql .qh { display:flex; align-items:baseline; gap:8px; } .ql .qh b { color:#fff; font-size:.92rem; }
+.ql .qh .c { color: var(--qc); font-weight:700; font-size:1.05rem; font-variant-numeric: tabular-nums; }
+.ql .qh span.d { color: var(--dim); font-size:.74rem; }
+.ql .us { display:flex; flex-wrap:wrap; gap:6px; margin-top:7px; }
+.ql .u { font-size:.76rem; color: var(--text); background: rgba(148,163,184,.08); border:1px solid var(--line2); border-radius:7px; padding:3px 8px; white-space:nowrap; }
+.ql .u i { display:inline-block; width:7px; height:7px; border-radius:50%; margin-right:6px; vertical-align:middle; }
+.ql .none { color: var(--dim); font-size:.76rem; margin-top:5px; }
+.qlg { display:flex; flex-wrap:wrap; gap: 6px 16px; color: var(--muted); font-size:.78rem; margin: 2px 0 2px; }
+.qlg i { display:inline-block; width:11px; height:11px; border-radius:3px; margin-right:6px; vertical-align:-1px; }
+.fx { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; }
+.fx div { background: rgba(7,13,26,.5); border:1px solid var(--line); border-radius: 10px; padding: 8px 10px; }
+.fx span { display:block; color: var(--dim); font-size:.72rem; } .fx b { color:#fff; font-size:1.02rem; font-variant-numeric: tabular-nums; }
+.fx b small { color: var(--muted); font-size:.74rem; font-weight:500; margin-left:2px; }
+.badge { display:inline-block; font-size:.78rem; font-weight:650; padding:4px 11px; border-radius:8px; border:1px solid; }
+.tps { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+.tps span { font-size:.74rem; color:#cbd5e1; border:1px dashed var(--line2); border-radius:7px; padding:3px 8px; }
+.tps span em { font-style:normal; color: var(--dim); margin-left:4px; }
+.disc { counter-reset: d; display:grid; gap:8px; margin: 4px 0 2px; }
+.disc div { position:relative; padding-left: 30px; color: var(--muted); font-size:.82rem; line-height:1.55; }
+.disc div::before { counter-increment: d; content: counter(d); position:absolute; left:0; top:1px; width:20px; height:20px; border-radius:6px;
+  background: rgba(34,211,238,.12); color: var(--accent); font-size:.72rem; font-weight:700; display:flex; align-items:center; justify-content:center; }
+.disc b { color: var(--text); }
 .foot { color: var(--dim); font-size:.74rem; text-align:center; padding: 22px 0 6px; border-top:1px solid var(--line); margin-top: 10px; }
 .foot a { color: var(--muted); }
 /* 위젯 살짝 */
@@ -121,6 +157,7 @@ html, body, .stApp, .stApp p, .stApp span, .stApp div, .stApp button, .stApp inp
 @media (max-width: 900px) {
   .hero .in { grid-template-columns: minmax(0,1fr); }
   .flow { grid-template-columns: minmax(0,1fr); } .flow .st::after { display:none; }
+  .tmstat { grid-template-columns: minmax(0,1fr); }
   [data-testid="stMainBlockContainer"] { padding: 0 14px 40px; } .st-key-topbar { margin: 0 -14px 6px; padding: 10px 14px; }
 }
 </style>
