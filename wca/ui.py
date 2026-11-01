@@ -186,6 +186,11 @@ html, body, .stApp, .stApp p, .stApp span, .stApp div, .stApp button, .stApp inp
 .sc .v { color:#fff; font-weight:650; font-size:.95rem; font-variant-numeric: tabular-nums; min-width:110px; text-align:right; }
 .sc .v em { color: var(--dim); font-style:normal; font-size:.74rem; margin-left:3px; font-weight:500; }
 a.live { text-decoration:none; } a.live:hover { background: rgba(52,211,153,.16); }
+/* 눈에 덜 띄는 내려받기 (기술 지도 검토표) */
+.st-key-tm_dl { margin-top:-6px; }
+.st-key-tm_dl button { padding:0 2px !important; min-height:0 !important; }
+.st-key-tm_dl button p, .st-key-tm_dl button span { font-size:.74rem !important; color: var(--dim) !important; }
+.st-key-tm_dl button:hover p, .st-key-tm_dl button:hover span { color: var(--muted) !important; }
 .foot { color: var(--dim); font-size:.74rem; text-align:center; padding: 22px 0 6px; border-top:1px solid var(--line); margin-top: 10px; }
 .foot a { color: var(--muted); }
 /* 위젯 살짝 */
