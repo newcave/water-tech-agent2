@@ -226,7 +226,7 @@ def topbar(pages: list, current):
             for i, p in enumerate(pages):
                 with st.container(key=("navon" if p.title == current.title else f"nav{i}"), width="content"):
                     st.page_link(p, label=p.title, icon=p.icon)
-            h('<a class="live" href="./ops" target="_self"><i></i>LIVE · 에이전트 가동 중</a>', width="content")
+            h('<a class="live" href="./ops" target="_self"><i></i>LIVE · 수집 현황</a>', width="content")
 
 
 def page_header(eyebrow: str, title: str, desc: str, chips=()):

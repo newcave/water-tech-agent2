@@ -93,11 +93,11 @@ with ui.card("detail", "군집 들여다보기", "군집을 고르면 그 군집
 
 e1, e2 = st.columns(2, gap="medium")
 with e1:
-    with ui.card("new", "새로 등장한 단어", "2015년 이후 처음 나와 빠르게 늘어난 용어 · 논문 수", "New"):
+    with ui.card("new", "새로 등장한 단어", "2015년 이후 처음 나온 상승 용어 · 논문 수", "New"):
         new = sorted([r for r in oa.get("rising", []) if r.get("new")], key=lambda r: -r["docs"])[:10]
         ui.ranked([{"label": r["term"], "value": r["docs"], "sub": f"{r['first']}년 첫 등장", "color": "#d55181"} for r in new], fmt="{:,}편")
 with e2:
-    with ui.card("updown", "가장 뚜렷하게 오르내린 용어", "Sen 기울기(연간 비중 변화) 기준 · 위 6개 상승, 아래 6개 하강", "Trend"):
+    with ui.card("updown", "상승·하강 폭이 큰 용어", "Sen 기울기(연간 비중 변화) 기준 · 위 6개 상승, 아래 6개 하강", "Trend"):
         up = sorted(oa.get("rising", []), key=lambda r: -r.get("sen", 0))[:6]
         dn = sorted(oa.get("declining", []), key=lambda r: r.get("sen", 0))[:6]
         items = up + dn[::-1]

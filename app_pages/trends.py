@@ -17,7 +17,7 @@ a, b = (full[0], full[-1]) if full else ("", "")
 
 ui.page_header("Global research trends", "세계 연구 흐름",
                f"전 세계 학술 논문 데이터베이스 OpenAlex에서 7개 연구소 키워드가 제목·초록에 들어간 논문을 해마다 셉니다. "
-               f"같은 기간 해외 전체 논문은 {ui.fmt_pct(base['growth'])} 늘었으니, 이보다 빠르면 특히 뜨는 분야입니다.",
+               f"같은 기간 해외 전체 논문 증가율은 {ui.fmt_pct(base['growth'])}입니다.",
                [f"기간 <b>{a}–{b}</b>", f"키워드 <b>{len(kws)}</b>", f"갱신 <b>{D.updated_label()}</b>"])
 
 ui.kpis([{"label": r["name"], "value": f"{r['last']:,}", "unit": "편", "delta": ui.fmt_pct(r["growth"]),
@@ -43,7 +43,7 @@ with c1:
         fig.update_xaxes(type="category")
         ui.plot(fig, "tr_lines")
 with c2:
-    with ui.card("bubble", "성장 × 피인용 — 어디가 크면서 영향력도 있나", "가로 = 해외 대비 성장(%p) · 세로 = 피인용 상위 10% 비중 · 크기 = 편수", "Position"):
+    with ui.card("bubble", "성장 × 피인용", "가로 = 해외 대비 성장(%p) · 세로 = 피인용 상위 10% 비중 · 크기 = 편수", "Position"):
         pts = [r for r in rows if r["top10"] is not None and r["vs_base"] is not None]
         mx = max([r["last"] for r in pts] or [1])
         fig = go.Figure(go.Scatter(
@@ -63,7 +63,7 @@ with c2:
         fig.update_yaxes(ticksuffix="%")
         ui.plot(fig, "tr_bubble")
 
-with ui.card("kwexp", "키워드 탐색 — 연구소 안에서 어떤 세부 주제가 오르나", "연구소를 고르면 키워드별 추이와 성장·피인용이 나옵니다", "Keywords"):
+with ui.card("kwexp", "연구소별 키워드 추이", "연구소를 고르면 키워드별 추이와 성장·피인용이 나옵니다", "Keywords"):
     pick = st.segmented_control("연구소", D.INST_ORDER, format_func=lambda c: D.INST_SHORT[c], default="INST-07",
                                 key="tr_inst", label_visibility="collapsed") or "INST-07"
     sub = [k for k in kws if k["code"] == pick]
@@ -85,7 +85,7 @@ with ui.card("kwexp", "키워드 탐색 — 연구소 안에서 어떤 세부 �
                     "color": ui.INST_COLORS[pick]} for k in ss], fmt="{:+.0f}%")
         ui.note(f"{a}→{b} 논문 수 증가율 · 키워드끼리 겹치는 논문이 있음")
 
-with ui.card("kwboard", "전체 키워드 순위 — 성장과 영향력", f"7개 연구소 {len(kws)}개 키워드 · 막대 = {a}→{b} 성장, 점 = 피인용 상위 10% 비중", "Leaderboard"):
+with ui.card("kwboard", "전체 키워드 순위 — 성장률과 피인용", f"7개 연구소 {len(kws)}개 키워드 · 막대 = {a}→{b} 성장, 점 = 피인용 상위 10% 비중", "Leaderboard"):
     top = sorted([k for k in kws if k["growth"] is not None and k["last"] >= 50], key=lambda k: -k["growth"])[:18][::-1]
     fig = go.Figure()
     fig.add_trace(go.Bar(y=[f"{k['kw']}  ·  {k['inst']}" for k in top], x=[k["growth"] for k in top], orientation="h", name="성장",
