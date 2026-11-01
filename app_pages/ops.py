@@ -179,7 +179,7 @@ with d1c:
         fig.update_yaxes(rangemode="tozero", secondary_y=False)
         ui.plot(fig, "ops_daily")
 with d2c:
-    with ui.card("ops-clock", "24시간 쉬지 않는다", "시간대별 자동 작업 (KST, 전체 기간 합)", "Clock"):
+    with ui.card("ops-clock", "시간대별 Agent 작업 통계", "시간대별 자동 작업 (KST, 전체 기간 합)", "Clock"):
         hw = o.get("hourweek") or [[0] * 24 for _ in range(7)]
         hours = [sum(hw[w][h] for w in range(7)) for h in range(24)]
         mx = max(hours) or 1
