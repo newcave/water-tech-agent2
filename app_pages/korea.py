@@ -94,13 +94,13 @@ with d2:
 sj = (kr.get("scopes") or {}).get("J11+J12") or {}
 e1, e2 = st.columns([2, 3], gap="medium")
 with e1:
-    with ui.card("bigram", "국내 학회지에서 부쩍 늘어난 표현", "두 단어 표현 · 최근 3년 비중 ÷ 예전 비중 · 준포아송 추세검정 + FDR", "Rising"):
+    with ui.card("bigram", "국내 학회지 상승 표현", "두 단어 표현 · 최근 3년 비중 ÷ 예전 비중 · 준포아송 추세검정 + FDR", "Rising"):
         bg = [r for r in (sj.get("bigram") or {}).get("rising", []) if not r.get("minor") and r.get("lift") is not None]
         top = sorted(bg, key=lambda r: -r["lift"])[:10]
         ui.ranked([{"label": r["term"], "value": r["lift"], "sub": f"최근 {r['recent_docs']}편", "color": "#22d3ee"} for r in top],
                   fmt="{:.1f}배")
 with e2:
-    with ui.card("net", "떠오르는 용어 네트워크", f"국내 수자원·토목 학회지 · 최근 5년 함께 나온 상승 용어 · 색 = 군집(Louvain)", "Network"):
+    with ui.card("net", "상승 용어 네트워크", f"국내 수자원·토목 학회지 · 최근 5년 함께 나온 상승 용어 · 색 = 군집(Louvain)", "Network"):
         net = sj.get("network") or {}
 
         @st.cache_data(show_spinner=False)

@@ -75,9 +75,9 @@ wfs = o.get("workflows") or {}
 since = o.get("since", "")
 last_run = max((r["ts"] for r in o.get("recent") or []), default=None)
 
-ui.page_header("Live operations · Agents at work", "에이전트 수집 현황",
-               f"{since}부터 수집·라벨링·분석 에이전트가 사람 손 없이 돌아간 실제 작업 기록입니다. "
-               "모든 숫자는 저장소의 실행 기록(커밋·GitHub Actions·파이프라인 로그)에서 매시 다시 셉니다.",
+ui.page_header("Operations log", "에이전트 수집 현황",
+               f"{since}부터 수집·라벨링·분석 에이전트가 자동 실행된 작업 기록입니다. "
+               "숫자는 저장소의 실행 기록(커밋·GitHub Actions·파이프라인 로그)에서 매시 다시 집계합니다.",
                [f"가동 <b>{o.get('days_since', 0)}일째</b>", f"마지막 실행 <b>{ago(last_run)}</b>",
                 f"현황 갱신 <b>{ago(o.get('updated'))}</b>"])
 
@@ -103,12 +103,12 @@ ui.kpis([
      "sub": f"{T.get('run_minutes', 0):,}분 · 클라우드 러너", "spark": min_w, "color": "#3b82f6"},
     {"label": "자동 기록 커밋", "value": f"{T.get('commits_bot', 0):,}", "unit": "건", "sub": f"개발 커밋 {T.get('commits_dev', 0):,}건 별도",
      "spark": com_w, "color": "#9085e9"},
-    {"label": "수집 핵심 논문", "value": f"{T.get('papers_core', 0):,}", "unit": "편",
+    {"label": "핵심 논문 수집", "value": f"{T.get('papers_core', 0):,}", "unit": "편",
      "sub": f"목표 {T.get('papers_core_target', 0):,} 중 {T.get('papers_core', 0) / max(1, T.get('papers_core_target') or 1) * 100:.1f}%",
      "color": "#199e70"},
     {"label": "LLM 라벨링", "value": f"{T.get('assigned', 0) or 0:,}", "unit": "편", "sub": f"초록 확보 {T.get('abstract_ok', 0) or 0:,} · 파이프라인 {T.get('pipeline_runs', 0)}회",
      "spark": [g.get("assigned") or 0 for g in growth][-30:], "color": "#d55181"},
-    {"label": "쌓인 데이터", "value": f"{T.get('data_mb', 0):,.0f}", "unit": "MB", "sub": "수집 원본·초록·라벨 (data 브랜치)", "color": "#c98500"},
+    {"label": "저장 데이터", "value": f"{T.get('data_mb', 0):,.0f}", "unit": "MB", "sub": "수집 원본·초록·라벨 (data 브랜치)", "color": "#c98500"},
 ])
 
 # ── 활동 캘린더 + 다음 실행 ──
@@ -143,7 +143,7 @@ with c1:
             ui.plot(fig, "ops_cal")
             busiest = max(daily, key=lambda d: d.get("r", 0))
             act = sum(1 for d in daily if d.get("r", 0) > 0)
-            ui.note(f"가장 바빴던 날 <b style='color:#e2e8f0'>{busiest['d']}</b> 실행 {busiest.get('r', 0)}회 · "
+            ui.note(f"실행이 가장 많았던 날 <b style='color:#e2e8f0'>{busiest['d']}</b> 실행 {busiest.get('r', 0)}회 · "
                     f"실행이 있었던 날 {act}일 / {o.get('days_since', 0)}일 · 하루 평균 {T.get('runs', 0) / max(1, act):.1f}회")
 with c2:
     with ui.card("ops-next", "다음 예정 실행", "GitHub Actions 일정 · 몇 분 늦을 수 있음", "Schedule"):
@@ -194,7 +194,7 @@ with d2c:
         ui.style(fig, 340, legend=False, margin=dict(l=40, r=40, t=24, b=24))
         ui.plot(fig, "ops_clock")
         night = sum(hours[h] for h in list(range(0, 7)) + [22, 23])
-        ui.note(f"밤 10시~아침 7시 작업 {night:,}건 ({night / max(1, sum(hours)) * 100:.0f}%) — 사람이 쉬는 시간에도 돈다")
+        ui.note(f"22시~07시 작업 {night:,}건 ({night / max(1, sum(hours)) * 100:.0f}%)")
 
 # ── 누적 성장 ──
 g1, g2 = st.columns([1.3, 1], gap="medium")
@@ -317,7 +317,7 @@ with l2:
 # ── 실행 시간 분포 + 파이프라인 회차 ──
 p1, p2 = st.columns([1, 1.3], gap="medium")
 with p1:
-    with ui.card("ops-dur", "한 번 돌 때 걸리는 시간", "워크플로별 실행 시간 분포 (로그 눈금) — 길게 버티는 작업이 많다", "Duration"):
+    with ui.card("ops-dur", "워크플로별 실행 시간", "실행 1회당 걸린 시간 분포 (로그 눈금)", "Duration"):
         fig = go.Figure()
         for w in sorted(wfs.values(), key=lambda w: -w["runs"])[:8]:
             ds = [max(1, d) / 60 for d in (w.get("durs") or [])]
@@ -351,7 +351,7 @@ with p2:
 # ── 쌓은 자산 + 장애 ──
 a1, a2 = st.columns([1.6, 1], gap="medium")
 with a1:
-    with ui.card("ops-assets", "지금까지 다룬 자료", "수집·분석 에이전트가 손댄 자료의 규모 (모두 실제 건수)", "Scale"):
+    with ui.card("ops-assets", "수집·분석 자료 규모", "자료별 건수", "Scale"):
         items = [("수자원 핵심 12개 저널 논문 (상승 주제 분석)", T.get("oa_docs"), "편", "#9085e9"),
                  ("통합 물 지식 자산 (WCS 보고서·논문·특허)", T.get("wcs_assets"), "건", "#22d3ee"),
                  ("연구소 관련 문헌 수집 행", T.get("label_rows"), "행", "#3987e5"),
@@ -367,7 +367,7 @@ with a1:
             f'<span class="v">{v:,}<em>{u}</em></span></div>' for k, v, u, c in items) + "</div>")
         ui.note("막대는 로그 눈금 — 수십만 건과 수천 건을 한 줄에 놓으려고")
 with a2:
-    with ui.card("ops-fail", "장애 기록", "실패는 감추지 않고 남긴다 — 다음 회차가 이어 받음", "Incidents"):
+    with ui.card("ops-fail", "오류 기록", "파이프라인 오류 기록 · 다음 회차에서 재시도", "Incidents"):
         fs = o.get("failures") or {}
         bk = fs.get("by_kind") or {}
         KL = {"api_error": "API 오류 (재시도)", "empty_block": "초록 빈 응답", "workflow_failed": "워크플로 실패"}

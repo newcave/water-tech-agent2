@@ -27,14 +27,14 @@ ui.h(f"""
 <div class="hero">{WAVES}<div class="in">
   <div>
     <div class="eb">Water Co-Scientist · R&amp;D Agent Platform</div>
-    <h1>물 연구의 흐름을 읽는<br><span>AI 동료 연구자</span></h1>
-    <p>전 세계 논문·국내 학회지·특허·K-water 연구보고서를 자동으로 모으고 분석해, 7개 연구소가 어디에 힘을 실어야 할지
-    숫자와 근거로 보여 줍니다. 수집부터 분석·사람 검토까지 에이전트가 6시간마다 스스로 돌아갑니다.</p>
+    <h1>물 분야 R&amp;D 데이터<br><span>수집·분석 에이전트</span></h1>
+    <p>해외 논문·국내 학회지·특허·K-water 연구보고서를 자동으로 수집·분석해 7개 연구소 분야별 연구 동향을 보여 줍니다.
+    수집·라벨링·분석은 정해진 일정에 따라 자동 실행되고, 판정은 연구소 전문가가 합니다.</p>
   </div>
   <div class="facts">
     <div class="f"><b>{asset_total:,}</b><span>통합 물 지식 자산 (보고서·논문·특허)</span></div>
     <div class="f"><b>{oa.get("documents", 0):,}</b><span>핵심 12개 저널 논문 분석</span></div>
-    <div class="f"><b>{(oa.get("labels") or {}).get("Rising", 0):,}</b><span>통계로 검증한 떠오르는 연구 용어</span></div>
+    <div class="f"><b>{(oa.get("labels") or {}).get("Rising", 0):,}</b><span>통계적으로 유의한 상승 용어</span></div>
     <div class="f"><b>7 <small style="font-size:.9rem;color:#94a3b8">× {n_kw}</small></b><span>연구소 × 추적 키워드</span></div>
   </div>
 </div></div>""")
@@ -52,7 +52,7 @@ ui.kpis([
     {"label": f"연구소 관련 해외 논문 ({b})", "value": f"{tot_series[-1]:,}" if tot_series else "–", "unit": "편",
      "delta": ui.fmt_pct(D.pct(tot_series[0], tot_series[-1])) if tot_series else None, "up": True,
      "sub": f"{a}→{b} · 해외 전체 {ui.fmt_pct(base['growth'])}", "spark": tot_series, "color": ui.ACCENT},
-    {"label": "가장 빠르게 크는 분야", "value": fast["name"] if fast else "–",
+    {"label": "성장률 1위 분야", "value": fast["name"] if fast else "–",
      "delta": ui.fmt_pct(fast["growth"]) if fast else None, "up": True, "sub": f"{a}→{b} 논문 수",
      "spark": fast["series"] if fast else None, "color": ui.INST_COLORS.get(fast["code"]) if fast else ui.ACCENT},
     {"label": "피인용 상위 10% 비중", "value": f"{w_top:.1f}" if w_top else "–", "unit": "%",
@@ -60,7 +60,7 @@ ui.kpis([
      "sub": f"해외 전체 {base['top10']:.1f}% 대비" if base["top10"] else "", "color": "#9085e9"},
     {"label": "K-water 국내 학회지 논문", "value": f"{kk.get('total', 0):,}", "unit": "편", "sub": "KCI · 2001~",
      "spark": [kby.get(y, 0) for y in k_years], "color": "#d95926"},
-    {"label": "떠오르는 연구 주제 군집", "value": f"{(oa.get('run') or {}).get('clusters', 0)}", "unit": "개",
+    {"label": "상승 용어 군집", "value": f"{(oa.get('run') or {}).get('clusters', 0)}", "unit": "개",
      "sub": f"용어 {(oa.get('labels') or {}).get('Rising', 0):,}개 · Mann-Kendall + FDR", "color": "#199e70"},
 ])
 
@@ -81,7 +81,7 @@ with c1:
         fig.update_xaxes(type="category")
         ui.plot(fig, "ov_growth")
 with c2:
-    with ui.card("board", "연구소 스코어보드", f"{a}→{b} 성장 · 괄호는 피인용 상위 10% 비중", "7 Institutes"):
+    with ui.card("board", "연구소별 성장률", f"{a}→{b} 성장 · 괄호는 피인용 상위 10% 비중", "7 Institutes"):
         rr = sorted(rows, key=lambda r: -(r["growth"] or 0))
         ui.ranked([{"label": r["name"], "value": r["growth"] or 0, "color": ui.INST_COLORS[r["code"]],
                     "sub": f"{r['last']:,}편" + (f" · {r['top10']:.1f}%" if r["top10"] is not None else "")} for r in rr],
@@ -89,16 +89,16 @@ with c2:
 
 d1, d2, d3 = st.columns(3, gap="medium")
 with d1:
-    with ui.card("fastkw", "가장 빨리 크는 키워드", f"{a}→{b} 논문 수 증가 · 연간 100편 이상", "Growth"):
+    with ui.card("fastkw", "성장률 상위 키워드", f"{a}→{b} 논문 수 증가 · 연간 100편 이상", "Growth"):
         top = sorted([k for k in kws if k["last"] >= 100 and k["growth"] is not None], key=lambda k: -k["growth"])[:6]
         ui.ranked([{"label": k["kw"], "sub": k["inst"], "value": k["growth"], "color": ui.INST_COLORS[k["code"]]} for k in top],
                   fmt="{:+.0f}%")
 with d2:
-    with ui.card("citekw", "가장 많이 인용되는 키워드", "피인용 상위 10% 논문 비중 · 4년 300편 이상", "Impact"):
+    with ui.card("citekw", "피인용 상위 10% 비중 상위 키워드", "피인용 상위 10% 논문 비중 · 4년 300편 이상", "Impact"):
         top = sorted([k for k in kws if k["n"] >= 300 and k["top10"] is not None], key=lambda k: -k["top10"])[:6]
         ui.ranked([{"label": k["kw"], "sub": k["inst"], "value": k["top10"], "color": ui.INST_COLORS[k["code"]]} for k in top])
 with d3:
-    with ui.card("kwspec", "K-water가 특히 강한 분야", "국내 학회지 대비 K-water 논문 비중 (KCI 최근 5년)", "Korea"):
+    with ui.card("kwspec", "K-water 특화도 상위 분야", "국내 학회지 대비 K-water 논문 비중 (KCI 최근 5년)", "Korea"):
         sc = ki.get("scopes") or {}
         dom, kw = sc.get("domestic") or {}, sc.get("kwater") or {}
         spec = []
@@ -110,11 +110,11 @@ with d3:
                              "sub": f"{kn}편", "color": ui.INST_COLORS[c]})
         ui.ranked(sorted(spec, key=lambda r: -r["value"])[:6], fmt="{:.2f}배")
 
-with ui.card("flow", "어떻게 동작하나", "사람이 매일 하던 문헌 조사를 에이전트가 나눠 맡고, 연구자는 판단만", "Pipeline"):
+with ui.card("flow", "처리 흐름", "수집·라벨링·분석은 자동 실행, 판정은 연구소 전문가", "Pipeline"):
     steps = [("01", "수집", f"OpenAlex·KCI·ALIO·KIPRIS를 6시간·매일 자동 수집 — 핵심 저널 {oa.get('documents', 0):,}편"),
              ("02", "정제·라벨", "초록 보강 → LLM이 대상·문제·도메인 라벨, K-water 소속 판정"),
              ("03", "분석", "추세검정(Mann-Kendall)·FDR·공출현 네트워크로 떠오르는 주제 탐지"),
              ("04", "사람 검토", "연구소 전문가가 라벨·배정을 판정(HITL) — 판정 기록이 다음 학습 재료"),
-             ("05", "활용", "관제센터·지식노트·유망기술 지도로 연구 기획에 바로 쓰기")]
+             ("05", "활용", "관제센터·지식노트·기술 지도에서 조회")]
     ui.h('<div class="flow">' + "".join(f'<div class="st"><div class="i">{i}</div><b>{t}</b><span>{s}</span></div>'
                                            for i, t, s in steps) + "</div>")

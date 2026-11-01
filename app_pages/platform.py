@@ -15,7 +15,7 @@ COL = {"reports": "#22d3ee", "papers": "#3987e5", "patents": "#d95926"}
 
 ui.page_header("Knowledge assets · Agents", "지식 자산과 에이전트",
                "K-water가 쌓아 온 연구보고서와 외부 논문·특허를 한곳에서 찾는 통합 물 지식 자산 정보검색 시스템(WCS), "
-               "그리고 그 위에서 매일 일하는 수집·분석 에이전트입니다.",
+               "그리고 이를 수집·분석하는 에이전트 현황입니다.",
                [f"기준 <b>{assets.get('as_of', '-')}</b>", f"에이전트 <b>{len(D.agents())}</b>"])
 
 ui.kpis([{"label": "통합 물 지식 자산", "value": f"{total:,}", "unit": "건", "sub": "보고서 + 논문 + 특허", "color": ui.ACCENT}] + [
@@ -35,7 +35,7 @@ with c1:
         ui.plot(fig, "pf_donut")
         ui.note("논문이 대부분이라, 보고서(K-water 자체 성과)와 특허는 오른쪽 숫자 타일로 함께 봅니다.")
 with c2:
-    with ui.card("agents", "에이전트 함대", "각자 맡은 일을 스케줄에 따라 스스로 수행 — 상태는 실제 실행 기록", "Fleet"):
+    with ui.card("agents", "에이전트 목록", "에이전트별 상태와 최근 실행 (실행 기록 기준)", "Agents"):
         st_map = {"idle": ("대기 · 정상", "#34d399"), "running": ("실행 중", "#22d3ee"), "standby": ("준비", "#c98500"),
                   "plan": ("설계 중", "#94a3b8"), "error": ("오류", "#f87171")}
         names = {"openalex_collector": "해외 논문 감시 (OpenAlex)", "oa_rising": "떠오르는 주제 분석", "alio_crawler": "공공기관 보고서 수집 (ALIO)",
