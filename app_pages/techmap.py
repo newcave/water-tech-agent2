@@ -8,6 +8,7 @@ import streamlit as st
 
 from wca import data as D
 from wca import techmap as T
+from wca import review_xlsx as R
 from wca import ui
 
 sc = D.tech_scores()
@@ -256,6 +257,14 @@ if basis and len(yrs) > 1:
                 textfont=dict(color="#e2e8f0", size=12, family=ui.FONT)))
             ui.style(fig, 380, legend=False, margin=dict(l=8, r=8, t=8, b=8))
             ui.plot(fig, f"tm_sankey_{a}_{b}")
+            try:                                       # 검토용 표 — 비공개 문서 대신 내려받아 판단을 채워 돌려받는 용도 (눈에 덜 띄게)
+                xls = R.build(sc, S, a, b, basis)
+                st.download_button("검토용 표", xls, file_name=f"기술지도_검토표_{a}-{b}.xlsx", key="tm_dl",
+                                   mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                                   type="tertiary", icon=":material/download:", on_click="ignore",
+                                   help=f"{a} → {b} 사분면 변화를 연구소별로 정리한 엑셀 (판단·검토 의견 칸 포함, 화면 가중치 그대로)")
+            except Exception:
+                pass
     with s2:
         with ui.card("tm-move", "가장 크게 움직인 세부 기술", f"{a} → {b} · 평면 위 이동 거리", "Movers"):
             mv = []
