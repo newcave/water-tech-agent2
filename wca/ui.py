@@ -191,6 +191,7 @@ a.live { text-decoration:none; } a.live:hover { background: rgba(52,211,153,.16)
 .st-key-tm_dl button { padding:0 2px !important; min-height:0 !important; }
 .st-key-tm_dl button p, .st-key-tm_dl button span { font-size:.74rem !important; color: var(--dim) !important; }
 .st-key-tm_dl button:hover p, .st-key-tm_dl button:hover span { color: var(--muted) !important; }
+.st-key-wca_heal, [data-testid="stElementContainer"]:has(.st-key-wca_heal) { display:none !important; }
 .foot { color: var(--dim); font-size:.74rem; text-align:center; padding: 22px 0 6px; border-top:1px solid var(--line); margin-top: 10px; }
 .foot a { color: var(--muted); }
 /* 위젯 살짝 */
@@ -219,8 +220,30 @@ def h(body: str, width="stretch"):
     st.markdown(body, unsafe_allow_html=True, width=width)
 
 
+HEAL_JS = r'''<script>
+(function () {
+  /* 앱이 새로 배포된 뒤 오래 열린 탭은 예전 화면 파일(js 조각)을 찾다 실패한다 → 한 번만 새로고침 (2분 안 반복 없음) */
+  if (window.__wcaHeal) return; window.__wcaHeal = 1;
+  var PAT = /Failed to fetch dynamically imported module|Importing a module script failed|error loading dynamically imported module|Loading chunk [\w-]+ failed/i;
+  var KEY = "wca_heal_ts", busy = false;
+  function heal() {
+    try { var t = +(sessionStorage.getItem(KEY) || 0); if (Date.now() - t < 120000) return; sessionStorage.setItem(KEY, String(Date.now())); } catch (e) { return; }
+    location.reload();
+  }
+  window.addEventListener("unhandledrejection", function (e) { var r = e && e.reason; if (PAT.test(String((r && r.message) || r || ""))) heal(); });
+  window.addEventListener("error", function (e) { if (PAT.test(String((e && e.message) || ""))) heal(); }, true);
+  new MutationObserver(function () {
+    if (busy) return; busy = true;
+    setTimeout(function () { busy = false; if (PAT.test(document.body ? document.body.innerText : "")) heal(); }, 1500);
+  }).observe(document.body, { childList: true, subtree: true });
+})();
+</script>'''
+
+
 def inject():
     st.html(CSS)
+    with st.container(key="wca_heal"):                # 배포 뒤 오래 열린 탭이 예전 화면 조각(js)을 찾다 실패하면 한 번만 새로고침
+        st.html(HEAL_JS, unsafe_allow_javascript=True)
 
 
 def topbar(pages: list, current):
