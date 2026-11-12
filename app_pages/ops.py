@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""에이전트 수집 현황 — 2026-07-12부터 쉬지 않고 돈 수집·분석 에이전트의 실제 작업 기록.
+"""물 기술 자료 수집·분석 Agent 현황 — 2026-07-12부터 쉬지 않고 돈 수집·분석 에이전트의 실제 작업 기록.
 재료: 물벗 data 브랜치 live/ops/ops.json (agents/ops_stats.py가 매시 git 기록·Actions 실행 기록·파이프라인 로그에서 다시 셈)."""
 import math
 import time
@@ -23,7 +23,7 @@ SCHEDULE = [("논문 수집", "openalex-collector", "7 * * * *"), ("수집 현�
 
 o = D.ops()
 if not o:
-    ui.page_header("Live operations", "에이전트 수집 현황", "현황 자료를 읽지 못했습니다. 잠시 뒤 다시 열어 주세요.")
+    ui.page_header("Live operations", "물 기술 자료 수집·분석 Agent 현황", "현황 자료를 읽지 못했습니다. 잠시 뒤 다시 열어 주세요.")
     st.stop()
 T = o.get("totals") or {}
 now = time.time()
@@ -75,7 +75,7 @@ wfs = o.get("workflows") or {}
 since = o.get("since", "")
 last_run = max((r["ts"] for r in o.get("recent") or []), default=None)
 
-ui.page_header("Operations log", "에이전트 수집 현황",
+ui.page_header("Operations log", "물 기술 자료 수집·분석 Agent 현황",
                f"{since}부터 수집·라벨링·분석 에이전트가 자동 실행된 작업 기록입니다. "
                "숫자는 저장소의 실행 기록(커밋·GitHub Actions·파이프라인 로그)에서 매시 다시 집계합니다.",
                [f"가동 <b>{o.get('days_since', 0)}일째</b>", f"마지막 실행 <b>{ago(last_run)}</b>",
