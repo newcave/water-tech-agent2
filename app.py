@@ -28,7 +28,7 @@ def _fresh(*mods):
 
 _fresh(D, R, T, ui)
 
-APP_VERSION = "v1.2.5 · 2026-11-12"
+APP_VERSION = "v1.2.6 · 2026-11-12"
 
 st.set_page_config(page_title="Water Co-Scientist", page_icon="💧", layout="wide", initial_sidebar_state="collapsed")
 ui.inject()

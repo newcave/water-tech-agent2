@@ -45,16 +45,21 @@ if rows:
     num = sum((r["top10"] or 0) * sum(r["series"]) for r in rows if r["top10"] is not None)
     den = sum(sum(r["series"]) for r in rows if r["top10"] is not None)
     w_top = num / den if den else None
-fast = max(rows, key=lambda r: r["growth"] or -1e9) if rows else None
+by_n = sorted(rows, key=lambda r: -(r["last"] or 0))[:3]
+by_g = sorted([r for r in rows if r["growth"] is not None], key=lambda r: -r["growth"])[:3]
 kby = kk.get("by_year") or {}
 k_years = [y for y in sorted(kby) if int(y) < int(b or 9999)][-10:]
 ui.kpis([
     {"label": f"연구소 관련 해외 논문 ({b})", "value": f"{tot_series[-1]:,}" if tot_series else "–", "unit": "편",
      "delta": ui.fmt_pct(D.pct(tot_series[0], tot_series[-1])) if tot_series else None, "up": True,
      "sub": f"{a}→{b} · 해외 전체 {ui.fmt_pct(base['growth'])}", "spark": tot_series, "color": ui.ACCENT},
-    {"label": "성장률 1위 분야", "value": fast["name"] if fast else "–",
-     "delta": ui.fmt_pct(fast["growth"]) if fast else None, "up": True, "sub": f"{a}→{b} 논문 수",
-     "spark": fast["series"] if fast else None, "color": ui.INST_COLORS.get(fast["code"]) if fast else ui.ACCENT},
+    # 성장률만 두면 처음 해 편수가 적은 분야(AI 등)만 돋보여서 — 논문 수(절대량)와 성장률 1~3위를 나란히 (2026-11-12)
+    {"label": "연구소 분야 순위", "color": ui.ACCENT, "ranks": [
+        ("논문 수", f"{b}년", [{"name": r["name"], "value": f"{r['last']:,}편", "color": ui.INST_COLORS[r["code"]],
+                              "tip": f"{r['name']} {b}년 {r['last']:,}편"} for r in by_n]),
+        ("성장률", f"{a}→{str(b)[2:]}", [{"name": r["name"], "value": ui.fmt_pct(r["growth"]), "color": ui.INST_COLORS[r["code"]],
+                                "tip": f"{r['name']} {a}년 {r['first']:,}편 → {b}년 {r['last']:,}편"} for r in by_g]),
+    ]},
     {"label": "피인용 상위 10% 비중", "value": f"{w_top:.1f}" if w_top else "–", "unit": "%",
      "delta": f"{w_top / base['top10']:.1f}배" if w_top and base["top10"] else None, "up": True,
      "sub": f"해외 전체 {base['top10']:.1f}% 대비" if base["top10"] else "", "color": "#9085e9"},
@@ -62,7 +67,7 @@ ui.kpis([
      "spark": [kby.get(y, 0) for y in k_years], "color": "#d95926"},
     {"label": "상승 용어 군집", "value": f"{(oa.get('run') or {}).get('clusters', 0)}", "unit": "개",
      "sub": f"용어 {(oa.get('labels') or {}).get('Rising', 0):,}개 · Mann-Kendall + FDR", "color": "#199e70"},
-])
+], grid="ov")
 
 c1, c2 = st.columns([2, 1], gap="medium")
 with c1:

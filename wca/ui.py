@@ -68,6 +68,24 @@ html, body, .stApp, .stApp p, .stApp span, .stApp div, .stApp button, .stApp inp
 .kpi .d .up { color: var(--good); font-weight:600; } .kpi .d .dn { color: var(--bad); font-weight:600; }
 .kpi svg.spark { position:absolute; right:14px; top:14px; width: 84px; height: 30px; opacity:.95; }
 .kpi.sp .l { padding-right: 92px; }
+/* 순위 칸 타일 (개요 두 번째 칸 — 논문 수·성장률 1~3위) */
+.kpis.ov { grid-template-columns: 1fr 2fr 1fr 1fr 1fr; }
+.kpi.kr { padding: 14px 14px 12px; }
+.kpis.ov .kpi svg.spark { width: 62px; right: 12px; }
+.kpis.ov .kpi.sp .l { padding-right: 68px; }
+.kpi.kr .rc { display:grid; gap:6px; margin-top:8px; }
+.kpi.kr .g { display:grid; grid-template-columns: 52px repeat(3, minmax(0, 1fr)); gap:5px; }
+.kpi.kr .h { font-size:.72rem; color: var(--muted); align-self:center; line-height:1.25; }
+.kpi.kr .h em { display:block; font-style:normal; font-size:.62rem; color: var(--dim); white-space:nowrap; }
+.kpi.kr .c { background: rgba(148,163,184,.06); border:1px solid var(--line); border-radius:8px; padding:4px 7px 4px 8px;
+  box-shadow: inset 2px 0 0 var(--ic, var(--accent)); min-width:0; line-height:1.3; }
+.kpi.kr .c b { display:block; font-size:.7rem; color: var(--text); font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.kpi.kr .c b i { font-style:normal; color: var(--dim); font-weight:700; margin-right:4px; }
+.kpi.kr .c span { display:block; font-size:.86rem; color:#fff; font-weight:700; font-variant-numeric: tabular-nums; letter-spacing:-.01em; }
+@media (max-width: 1100px) {
+  .kpis.ov { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+  .kpis.ov .kpi.kr { grid-column: 1 / -1; order: -1; }
+}
 /* 카드 */
 [class*="st-key-card-"] { background: linear-gradient(180deg, rgba(17,28,51,.92), rgba(15,23,42,.92)); border:1px solid var(--line);
   border-radius: 16px; padding: 16px 18px 12px; box-shadow: 0 18px 40px -28px rgba(0,0,0,.8); }
@@ -279,10 +297,14 @@ def spark(values, color=ACCENT, w=96, h=34):
             f'stroke-linejoin="round" stroke-linecap="round"/><circle cx="{pts[-1][0]:.1f}" cy="{pts[-1][1]:.1f}" r="2.4" fill="{color}"/></svg>')
 
 
-def kpis(tiles: list):
-    """tiles: dict(label, value, unit='', delta=None(str), up=True|False|None, sub='', color=, spark=[...])"""
+def kpis(tiles: list, grid: str = ""):
+    """tiles: dict(label, value, unit='', delta=None(str), up=True|False|None, sub='', color=, spark=[...])
+    또는 dict(label, ranks=[(제목, 부제, [dict(name, value, color, tip)] ...)]) — 순위 칸 타일 (rank_tile)"""
     out = []
     for t in tiles:
+        if t.get("ranks") is not None:
+            out.append(rank_tile(t["label"], t["ranks"], t.get("color", ACCENT)))
+            continue
         d = ""
         if t.get("delta"):
             cls = "up" if t.get("up") else "dn" if t.get("up") is False else ""
@@ -291,7 +313,19 @@ def kpis(tiles: list):
         out.append(f'<div class="kpi{sp}" style="--c:{t.get("color", ACCENT)}"><div class="l">{esc(t["label"])}</div>'
                    f'<div class="v">{t["value"]}<small>{t.get("unit", "")}</small></div>'
                    f'<div class="d">{d}{t.get("sub", "")}</div>{spark(t.get("spark"), t.get("color", ACCENT))}</div>')
-    h(f'<div class="kpis">{"".join(out)}</div>')
+    h(f'<div class="kpis{(" " + grid) if grid else ""}">{"".join(out)}</div>')
+
+
+def rank_tile(label: str, groups: list, color: str = ACCENT) -> str:
+    """순위 칸 타일 — 줄마다 (제목, 부제, 1~3위 칸). 그래프 없이 이름과 값만."""
+    rows = []
+    for title, sub, items in groups:
+        cells = "".join(
+            f'<div class="c" style="--ic:{it.get("color", color)}" title="{esc(it.get("tip", ""))}">'
+            f'<b><i>{i}</i>{esc(it["name"])}</b><span>{it["value"]}</span></div>' for i, it in enumerate(items[:3], 1))
+        cells += '<div class="c"></div>' * (3 - min(3, len(items)))
+        rows.append(f'<div class="g"><span class="h">{esc(title)}<em>{esc(sub)}</em></span>{cells}</div>')
+    return f'<div class="kpi kr" style="--c:{color}"><div class="l">{esc(label)}</div><div class="rc">{"".join(rows)}</div></div>'
 
 
 @contextmanager
